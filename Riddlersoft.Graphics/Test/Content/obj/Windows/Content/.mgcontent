@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Cloud003.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/MultiDot.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/osr screen.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Particle006.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Particle001.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/dirt.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/grass.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/foreset2.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/leaf.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Star.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Spikey001.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/SoftSmokey.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Particle003.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Cloud004.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Particle005.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/godray.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/shadow.png</File>
+    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/normalmap.png</File>
+  </SourceFiles>
+</SourceFileCollection>

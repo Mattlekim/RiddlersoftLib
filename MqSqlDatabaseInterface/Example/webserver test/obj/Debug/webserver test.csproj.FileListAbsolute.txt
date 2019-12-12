@@ -1,0 +1,16 @@
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\bin\Debug\webserver test.exe.config
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\bin\Debug\webserver test.exe
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\bin\Debug\webserver test.pdb
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\bin\Debug\MySqlDI.dll
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\bin\Debug\MySqlDI.pdb
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\obj\Debug\webserver test.csprojResolveAssemblyReference.cache
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\obj\Debug\webserver test.exe
+c:\users\m_bri\documents\visual studio 2017\Projects\webserver test\webserver test\obj\Debug\webserver test.pdb
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\bin\Debug\webserver test.exe.config
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\obj\Debug\webserver test.exe
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\obj\Debug\webserver test.pdb
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\obj\Debug\webserver test.csprojResolveAssemblyReference.cache
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\bin\Debug\webserver test.exe
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\bin\Debug\webserver test.pdb
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\bin\Debug\MySqlDI.dll
+C:\Users\m_bri\OneDrive\Programming\Old School Racer 2 Head To Head\MqSqlDatabaseInterface\Example\webserver test\bin\Debug\MySqlDI.pdb

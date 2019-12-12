@@ -1,0 +1,11 @@
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\CoreTestSwitch.exe.config
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\CoreTestSwitch.exe
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\CoreTestSwitch.pdb
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\Riddlersoft.Core.dll
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\MonoGame.Framework.dll
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\Riddlersoft.Core.pdb
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\MonoGame.Framework.xml
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\obj\Debug\CoreTestSwitch.csprojResolveAssemblyReference.cache
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\obj\Debug\CoreTestSwitch.exe
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\obj\Debug\CoreTestSwitch.pdb
+E:\Programming\OSR2\Libs\Core\CoreTest\CoreTestSwitch\bin\Debug\MonoGame.Framework.pdb

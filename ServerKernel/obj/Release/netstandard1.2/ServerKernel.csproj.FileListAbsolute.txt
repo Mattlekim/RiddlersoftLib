@@ -1,0 +1,9 @@
+D:\Programming\Libs\ServerKernel\bin\Release\netstandard1.2\ServerKernel.deps.json
+D:\Programming\Libs\ServerKernel\bin\Release\netstandard1.2\ServerKernel.dll
+D:\Programming\Libs\ServerKernel\bin\Release\netstandard1.2\ServerKernel.pdb
+D:\Programming\Libs\ServerKernel\bin\Release\netstandard1.2\MySqlDI.dll
+D:\Programming\Libs\ServerKernel\bin\Release\netstandard1.2\MySqlDI.pdb
+D:\Programming\Libs\ServerKernel\obj\Release\netstandard1.2\ServerKernel.csprojResolveAssemblyReference.cache
+D:\Programming\Libs\ServerKernel\obj\Release\netstandard1.2\ServerKernel.AssemblyInfo.cs
+D:\Programming\Libs\ServerKernel\obj\Release\netstandard1.2\ServerKernel.dll
+D:\Programming\Libs\ServerKernel\obj\Release\netstandard1.2\ServerKernel.pdb

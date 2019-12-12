@@ -1,0 +1,7 @@
+D:\Programming\Libs\MqSqlDatabaseInterface\bin\Release\netstandard1.2\MySqlDI.deps.json
+D:\Programming\Libs\MqSqlDatabaseInterface\bin\Release\netstandard1.2\MySqlDI.dll
+D:\Programming\Libs\MqSqlDatabaseInterface\bin\Release\netstandard1.2\MySqlDI.pdb
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Release\netstandard1.2\MySqlDatabseInterface.csprojResolveAssemblyReference.cache
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Release\netstandard1.2\MySqlDatabseInterface.AssemblyInfo.cs
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Release\netstandard1.2\MySqlDI.dll
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Release\netstandard1.2\MySqlDI.pdb

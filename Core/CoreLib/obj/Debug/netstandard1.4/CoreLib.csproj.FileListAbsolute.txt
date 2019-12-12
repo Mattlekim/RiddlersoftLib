@@ -1,0 +1,3 @@
+D:\Programming\Libs\Core\CoreLib\bin\Debug\netstandard1.4\CoreLib.deps.json
+D:\Programming\Libs\Core\CoreLib\obj\Debug\netstandard1.4\CoreLib.csprojResolveAssemblyReference.cache
+D:\Programming\Libs\Core\CoreLib\obj\Debug\netstandard1.4\CoreLib.AssemblyInfo.cs

@@ -1,0 +1,3 @@
+D:\Programming\Libs\MqSqlDatabaseInterface\bin\Debug\netstandard1.0\MySqlDI.deps.json
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.0\MySqlDatabseInterface.csprojResolveAssemblyReference.cache
+D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.0\MySqlDatabseInterface.AssemblyInfo.cs

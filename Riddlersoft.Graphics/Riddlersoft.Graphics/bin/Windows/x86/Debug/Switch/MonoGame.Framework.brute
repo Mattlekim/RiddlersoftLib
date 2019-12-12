@@ -1,0 +1,6 @@
+<Config>
+
+  <!-- Make sure all the XNA type readers are included -->
+  <BaseType name="Microsoft.Xna.Framework.Content.ContentTypeReader" assembly="MonoGame.Framework" />
+  
+</Config>
