@@ -1,0 +1,39 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
+/config:
+/profile:HiDef
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Shaders/2D/Common.fxh
+/copy:Shaders/2D/Common.fxh
+
+#begin Shaders/2D/Lighting.fxh
+/copy:Shaders/2D/Lighting.fxh
+
+#begin Shaders/2D/Macros.fxh
+/copy:Shaders/2D/Macros.fxh
+
+#begin Shaders/2D/Structures.fxh
+/copy:Shaders/2D/Structures.fxh
+
+#begin Shaders/2D/BasicLighting.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/2D/BasicLighting.fx
+
+#begin Shaders/2D/Mask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/2D/Mask.fx
+
