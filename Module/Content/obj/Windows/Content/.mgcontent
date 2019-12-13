@@ -4,11 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/load.png</File>
-    <File>C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/save.png</File>
+    <File>E:/Programming/RiddlersoftLib/Module/Content/load.png</File>
+    <File>E:/Programming/RiddlersoftLib/Module/Content/save.png</File>
   </SourceFiles>
-  <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-  </DestFiles>
 </SourceFileCollection>
