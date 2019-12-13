@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/load.png","C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/bin/Windows/Content/load.xnb","TextureProcessor","Texture2DContent",992,16469,0.2940376
+"C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/save.png","C:/Users/m_bri/Documents/RiddlersoftLib/Module/Content/bin/Windows/Content/save.xnb","TextureProcessor","Texture2DContent",2079,16469,0.0229996

@@ -4,7 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/BasicLighting.fx</File>
-    <File>E:/Programming/OSR2/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/Mask.fx</File>
+    <File>C:/Users/m_bri/Documents/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/BasicLighting.fx</File>
+    <File>C:/Users/m_bri/Documents/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/Mask.fx</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>
