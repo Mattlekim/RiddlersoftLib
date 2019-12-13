@@ -237,7 +237,7 @@ namespace Riddlersoft.Core.Xml
         public static byte[] DecodeArrayByte(string value)
         {
             if (value == null)
-                return null;
+                return new byte[0];
             return DecodeListByte(value).ToArray();
         }
 
