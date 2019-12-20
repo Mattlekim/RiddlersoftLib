@@ -12,7 +12,8 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 
     if (Enabled)
     {
-        return maskColor * min(maskColor.a, pixelColor.a);
+        pixelColor *= maskColor.a;
+        pixelColor.a *= maskColor.a;
     }
         return pixelColor;
     }

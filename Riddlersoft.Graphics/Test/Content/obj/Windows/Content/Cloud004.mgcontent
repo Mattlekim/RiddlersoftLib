@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/Cloud004.png</SourceFile>
-  <SourceTime>2018-09-20T19:09:15.0851207+01:00</SourceTime>
-  <DestFile>E:/Programming/OSR2/Riddlersoft.Graphics/Test/Content/bin/Windows/Content/Cloud004.xnb</DestFile>
-  <DestTime>2019-06-10T10:02:26.0723877+01:00</DestTime>
+  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Cloud004.png</SourceFile>
+  <SourceTime>2019-12-12T16:48:24.9373834+00:00</SourceTime>
+  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/bin/Windows/Content/Cloud004.xnb</DestFile>
+  <DestTime>2019-12-19T11:29:59.0031832+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

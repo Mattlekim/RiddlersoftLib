@@ -119,7 +119,10 @@ namespace Riddlersoft.Core.Xml
 
         public T ReadAttributeEnum<T>(string name)
         {
-            return (T)Enum.Parse(typeof(T), Reader.GetAttribute(name), true);
+            string s = Reader.GetAttribute(name);
+            if (s == null)
+                return (T)Enum.Parse(typeof(T), Enum.GetNames(typeof(T))[0], true);
+            return (T)Enum.Parse(typeof(T), s, true);
         }
 
         public Color ReadAttributeColor(string name)

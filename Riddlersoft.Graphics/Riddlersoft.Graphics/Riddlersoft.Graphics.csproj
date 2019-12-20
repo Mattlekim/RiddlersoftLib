@@ -75,6 +75,7 @@
     <Compile Include="SpriteBatchExtender.cs" />
     <Compile Include="DrawableInterface.cs" />
     <Compile Include="Texture2DMulti.cs" />
+    <Compile Include="Texture2DSwip.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

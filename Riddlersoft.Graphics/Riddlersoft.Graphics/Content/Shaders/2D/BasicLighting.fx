@@ -33,10 +33,15 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 	if (EnableLightMap == true)
 	{
 		  // Apply contrast.
-		pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;
+		//pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;
 		col = lightColor.a * Brightness;
+        
+        pixelColor.rgb *= (AmbientColor * AmbientBrigthness) + (lightColor.rgb * col.a);
+			//pixelColor.rbg *= AmbientBrigthness;
 
-	}
+      //  pixelColor.rgb *= max(AmbientBrigthness, col.a);
+        return pixelColor;
+    }
 	else
 	{
 		  pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;
@@ -45,10 +50,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 	  // Return final pixel color.
 	  //  pixelColor.rgb *= pixelColor.a;
 
-	pixelColor.rgb *= (AmbientColor * AmbientBrigthness) + (lightColor.rgb * col.a);
-			//pixelColor.rbg *= AmbientBrigthness;
-
-	pixelColor.rgb *= max(AmbientBrigthness, col.a);
+	
 
 	return pixelColor;
 }

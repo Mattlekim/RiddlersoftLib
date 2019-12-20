@@ -186,6 +186,7 @@ namespace Test
             return pe;
         }
 
+        Riddlersoft.Graphics.Texture2DSwip _tex;
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -201,6 +202,7 @@ namespace Test
 
             lighteffect = Lighting2D.Load(Content);
 
+            _tex = Content.Load<Texture2D>("osr screen");
 
             //lighteffect.Parameters["Brightness"].SetValue(0f);
             IsMouseVisible = true;
@@ -250,7 +252,6 @@ namespace Test
 
             base.Update(gameTime);
         }
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -264,15 +265,16 @@ namespace Test
             spriteBatch.Begin();
             spriteBatch.Draw(bg, Vector2.Zero, Color.White);
             pEffect2.Render(spriteBatch);
-
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
 
             pEffect.Render(spriteBatch);
             spriteBatch.End();
-
-
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            _tex.Draw(spriteBatch, new Vector2(200, 200));
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
