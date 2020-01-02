@@ -74,6 +74,4 @@ E:\Programming\RiddlersoftLib\Module\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 E:\Programming\RiddlersoftLib\Module\bin\Windows\x86\Debug\SharpDX.XInput.xml
 E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Riddlersoft.Modules.dll
 E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Riddlersoft.Modules.pdb
-E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Modules.csprojAssemblyReference.cache
-E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Modules.csproj.CoreCompileInputs.cache
-E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Modules.csproj.CopyComplete
+E:\Programming\RiddlersoftLib\Module\obj\x86\Debug\Modules.csprojResolveAssemblyReference.cache

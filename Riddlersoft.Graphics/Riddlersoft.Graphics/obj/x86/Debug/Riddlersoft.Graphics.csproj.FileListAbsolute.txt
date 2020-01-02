@@ -80,6 +80,4 @@ E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Wind
 E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\SharpDX.XInput.xml
 E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.dll
 E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.pdb
-E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.csprojAssemblyReference.cache
-E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.csproj.CoreCompileInputs.cache
-E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.csproj.CopyComplete
+E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.csprojResolveAssemblyReference.cache
