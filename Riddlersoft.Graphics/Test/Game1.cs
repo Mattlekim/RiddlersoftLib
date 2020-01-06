@@ -203,7 +203,7 @@ namespace Test
             lighteffect = Lighting2D.Load(Content);
 
             _tex = Content.Load<Texture2D>("osr screen");
-
+            _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
             //lighteffect.Parameters["Brightness"].SetValue(0f);
             IsMouseVisible = true;
         }
@@ -235,7 +235,7 @@ namespace Test
 
             if (ms.LeftButton == ButtonState.Pressed && lms.LeftButton == ButtonState.Released) //this will only trigger once per click
             {
-
+                _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
                 pEffect.Trigger(new Point(ms.Position.X, ms.Position.Y), 1);
             }
 
@@ -273,7 +273,7 @@ namespace Test
             spriteBatch.End();
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            _tex.Draw(spriteBatch, new Vector2(200, 200));
+            _tex.Draw(spriteBatch, new Vector2(200, 200), Color.White);
             spriteBatch.End();
 
             // TODO: Add your drawing code here
