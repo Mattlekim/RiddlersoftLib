@@ -136,6 +136,33 @@ namespace Riddlersoft.Modules.Chat
             BubbleHeight = height;
         }
 
+        public void DrawSpeachBubble(SpriteBatch sb, Vector2 pos, int width, int height, Color col)
+        {
+            pos.X = Convert.ToInt32(pos.X);
+            pos.Y = Convert.ToInt32(pos.Y);
+            //draw coners
+            sb.Draw(_background, pos, _parts[0], Color.White);
+            sb.Draw(_background, pos + new Vector2(width, 0), _parts[1], Color.White);
+
+            sb.Draw(_background, pos + new Vector2(0, height), _parts[2], Color.White);
+            sb.Draw(_background, pos + new Vector2(width, height), _parts[3], Color.White);
+
+            Point p = pos.ToPoint();
+            //Draw sides
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y, width - _parts[0].Width, _parts[4].Height), _parts[4], col);
+            sb.Draw(_background, new Rectangle(p.X + width, p.Y + _parts[0].Height, _parts[5].Width, height - _parts[0].Height), _parts[5], col);
+
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y + height, width - _parts[0].Width, _parts[6].Height), _parts[6], col);
+            sb.Draw(_background, new Rectangle(p.X, p.Y + _parts[0].Height, _parts[7].Width, height - _parts[0].Height), _parts[7], col);
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y + _parts[0].Height, width - _parts[0].Width, height - _parts[0].Height), _parts[8], col);
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width + 50, p.Y + height + 18, _parts[9].Width, _parts[9].Height), _parts[9], col);
+
+            BubbleHeight = height;
+        }
+
         Vector2 drawpos;
         public override void Draw(SpriteBatch sb)
         {
