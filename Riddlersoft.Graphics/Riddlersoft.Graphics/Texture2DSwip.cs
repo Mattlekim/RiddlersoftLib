@@ -12,7 +12,9 @@ namespace Riddlersoft.Graphics
     {
         public enum TextureState { Compile, Decomplie, None}
 
-        private TextureState State = TextureState.Decomplie;
+        private TextureState State = TextureState.None;
+
+        public TextureState CurrentState { get { return State; } }
 
         public class Partical
         {
@@ -21,7 +23,7 @@ namespace Riddlersoft.Graphics
             public float LifeTime;
         }
 
-        public static float FixTimeStep = .016f;
+        public float Speed = .016f;
 
 
         private float _amount = 0;
@@ -31,7 +33,7 @@ namespace Riddlersoft.Graphics
         private Texture2DSwip(Texture2D sprite)
         {
             Sprite = sprite;
-            SetState(TextureState.Compile);
+            SetState(TextureState.None);
         }
 
         public void SetState(TextureState state)
@@ -63,17 +65,17 @@ namespace Riddlersoft.Graphics
         List<Partical> _particals = new List<Partical>();
 
         float dir = 0;
-        public void Draw(SpriteBatch sb, Vector2 pos)
+        public void Draw(SpriteBatch sb, Vector2 pos, Color colour)
         {
            
             switch (State)
             {
                 case TextureState.Decomplie:
-                    _amount += FixTimeStep * .1f;
+                    _amount += Speed * .1f;
 
                     break;
                 case TextureState.Compile:
-                    _amount -= FixTimeStep * .1f;
+                    _amount -= Speed * .1f;
                     break;
             }
                 
@@ -135,7 +137,7 @@ namespace Riddlersoft.Graphics
             for (int i = _particals.Count - 1; i >= 0; i--)
             {
                 _particals[i].Position.Y += dir;
-                _particals[i].LifeTime -= FixTimeStep;
+                _particals[i].LifeTime -= Speed;
                 sb.Draw(Sprite, _particals[i].Position + pos, _particals[i].Part, Color.White * (_particals[i].LifeTime * 2));
                 if (_particals[i].LifeTime <= 0)
                     _particals.RemoveAt(i);
