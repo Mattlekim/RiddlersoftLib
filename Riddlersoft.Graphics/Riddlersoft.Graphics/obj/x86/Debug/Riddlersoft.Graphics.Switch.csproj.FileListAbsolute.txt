@@ -1,9 +1,0 @@
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\MonoGame.Framework.brute
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\Riddlersoft.Graphics.dll
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\Riddlersoft.Graphics.pdb
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\MonoGame.Framework.dll
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\MonoGame.Framework.pdb
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\bin\Windows\x86\Debug\Switch\MonoGame.Framework.xml
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.Switch.csprojResolveAssemblyReference.cache
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.dll
-E:\Programming\OSR2\Riddlersoft.Graphics\Riddlersoft.Graphics\obj\x86\Debug\Riddlersoft.Graphics.pdb

@@ -223,3 +223,13 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+Core/bin/Debug/
+
+Core/obj/Debug/Core.csprojResolveAssemblyReference.cache
+
+Core/obj/Debug/Riddlersoft.Core.dll
+
+Core/obj/Debug/
+
+*.cache
