@@ -185,6 +185,7 @@ namespace Riddlersoft.Modules.Chat
 
         private void NextSnippit()
         {
+            _autoEndTimer = 0;
             if (_responces.Count > 0) //if we have responces
             {
                 Responce r = _responces[_responceSelected];
@@ -312,6 +313,7 @@ namespace Riddlersoft.Modules.Chat
         private float delay = 0;
         public virtual void Draw(SpriteBatch sb)
         {
+            
             if (_activeSnippit == -1)
                 return;
 

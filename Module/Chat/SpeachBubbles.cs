@@ -54,7 +54,7 @@ namespace Riddlersoft.Modules.Chat
 
         private SpriteFont _font;
 
-        private SpeachBubbleAcher _sb1, _sb2;
+        public SpeachBubbleAcher _sb1, _sb2;
 
         public byte Data;
 
@@ -189,7 +189,7 @@ namespace Riddlersoft.Modules.Chat
             text = TextHelper.Lerp(_snippits[_activeSnippit].Text, _textProgress);
             _lastChar = _currentChar;
             _currentChar = text.Length;
-            sb.DrawString(_font, text , drawpos + new Vector2(0, 2), Color.Black);
+          //  sb.DrawString(_font, text , drawpos + new Vector2(0, 2), Color.Black);
             sb.DrawString(_font, text , drawpos, _chat.TextColour);
 
             foreach (TexturePosition tp in sn.Textures)
@@ -221,7 +221,7 @@ namespace Riddlersoft.Modules.Chat
             Vector2 pos = _font.MeasureString(_snippits[_activeSnippit].Text) + new Vector2(40, 10);
             DrawSpeachBubble(sb, drawpos - new Vector2(30, 24) - camera, (int)pos.X, (int)pos.Y);
 
-            sb.DrawString(_font, TextHelper.Lerp(_snippits[_activeSnippit].Text, _textProgress), drawpos + new Vector2(0, 2) - camera, Color.Black);
+            //sb.DrawString(_font, TextHelper.Lerp(_snippits[_activeSnippit].Text, _textProgress), drawpos + new Vector2(0, 2) - camera, Color.Black);
             sb.DrawString(_font, TextHelper.Lerp(_snippits[_activeSnippit].Text, _textProgress), drawpos - camera, _chat.TextColour);
 
             foreach (TexturePosition tp in sn.Textures)

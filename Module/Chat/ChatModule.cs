@@ -215,7 +215,7 @@ namespace Riddlersoft.Modules.Chat
                 if (GamePadApi.IsButtonClick(Buttons.B) || KeyboardAPI.IsKeyPressed(Keys.Escape))
                     _activeConversation.JumpToEnd();
             }
-
+            //fade = 0;
             _activeConversation.Update(dt);
             base.Update(gameTime);
         }

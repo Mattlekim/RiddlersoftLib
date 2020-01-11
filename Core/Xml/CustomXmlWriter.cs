@@ -26,9 +26,9 @@ namespace Riddlersoft.Core.Xml
         public static CustomXmlWriter Create(Stream stream)
         {
 #if WINDOWS
-     //       System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-GB");
-    //        System.Threading.Thread.CurrentThread.CurrentCulture = ci;
-      //      System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-GB");
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+            System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
 #endif
             return new Xml.CustomXmlWriter(stream);
         }
