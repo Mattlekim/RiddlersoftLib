@@ -9,6 +9,8 @@ using Riddlersoft.Graphics.Particals.Modifyers;
 using Riddlersoft.Graphics.Shaders;
 
 using Riddlersoft.Graphics.Shaders._2D;
+
+using Riddlersoft.Graphics.Effects;
 namespace Test
 {
     /// <summary>
@@ -24,7 +26,7 @@ namespace Test
         ParticalEffect pEffect;
         ParticalEffect pEffect2;
 
-
+        EletricityEffect eEffect;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -206,6 +208,8 @@ namespace Test
             _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
             //lighteffect.Parameters["Brightness"].SetValue(0f);
             IsMouseVisible = true;
+
+            eEffect = new EletricityEffect(this);
         }
 
         /// <summary>
@@ -244,7 +248,7 @@ namespace Test
                 pEffect2.Trigger(new Point(ms.Position.X, ms.Position.Y), 1);
             }
 
-
+            eEffect.Update(dt);
             pEffect.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             pEffect2.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //Window.Title = pEffect.Emitters[0].Particals.Count.ToString();
@@ -274,8 +278,10 @@ namespace Test
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             _tex.Draw(spriteBatch, new Vector2(200, 200), Color.White);
+            
             spriteBatch.End();
 
+            eEffect.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

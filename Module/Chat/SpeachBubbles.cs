@@ -15,6 +15,7 @@ namespace Riddlersoft.Modules.Chat
         public Vector2 Postion;
         public string name;
 
+     
         public SpeachBubbleAcher()
         {
             Postion = Vector2.Zero;
@@ -37,6 +38,7 @@ namespace Riddlersoft.Modules.Chat
 
     public class SpeachBubbles : Conversation
     {
+        public Color TextColour = Color.White;
 
         private readonly Rectangle[] _parts = new Rectangle[10] 
         {
@@ -190,7 +192,7 @@ namespace Riddlersoft.Modules.Chat
             _lastChar = _currentChar;
             _currentChar = text.Length;
           //  sb.DrawString(_font, text , drawpos + new Vector2(0, 2), Color.Black);
-            sb.DrawString(_font, text , drawpos, _chat.TextColour);
+            sb.DrawString(_font, text , drawpos, TextColour);
 
             foreach (TexturePosition tp in sn.Textures)
             {
