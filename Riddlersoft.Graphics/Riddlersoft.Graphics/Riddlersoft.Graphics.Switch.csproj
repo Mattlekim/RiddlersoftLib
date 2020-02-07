@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Windows\x86\Debug\Switch\</OutputPath>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,16 +43,20 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DrawBox.cs" />
+    <Compile Include="Effects\Conduit.cs" />
+    <Compile Include="Effects\EletricityEffect.cs" />
+    <Compile Include="Effects\Spark.cs" />
     <Compile Include="Particals\BasicMath.cs" />
     <Compile Include="Particals\Emitters\ConeEmitter.cs" />
     <Compile Include="Particals\Emitters\CircleEmitter.cs" />
+    <Compile Include="Particals\Modifyers\KillModifyer.cs" />
     <Compile Include="Particals\EmmiterFunction.cs" />
     <Compile Include="Particals\Modifyers\DampaningModifyer.cs" />
-    <Compile Include="Particals\Modifyers\KillModifyer.cs" />
     <Compile Include="Particals\Modifyers\LinearScaleModifyer.cs" />
     <Compile Include="Particals\Modifyers\LinearGravityModifyer.cs" />
-    <Compile Include="Particals\Modifyers\OsolatingModifyer.cs" />
     <Compile Include="Particals\Modifyers\RotatingOsolatingModifyer.cs" />
+    <Compile Include="Particals\Modifyers\OsolatingModifyer.cs" />
     <Compile Include="Particals\Modifyers\StateColourModifyer.cs" />
     <Compile Include="Particals\Modifyers\LinearColourModifyer.cs" />
     <Compile Include="Particals\Modifyers\StateFadeModifyer.cs" />
@@ -64,27 +68,35 @@
     <Compile Include="Particals\Emitters\EmitterInterface.cs" />
     <Compile Include="Particals\Emitters\RectangleEmitter.cs" />
     <Compile Include="Particals\Partical.cs" />
+    <Compile Include="Effects\PoligonClass.cs" />
     <Compile Include="PoligonEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shaders\2D\Lighting2D.cs" />
+    <Compile Include="Shaders\2D\Mask.cs" />
     <Compile Include="Shaders\2D\Pixalate.cs" />
     <Compile Include="Shaders\2D\Saturation.cs" />
     <Compile Include="Shaders\WaterEffect.cs" />
     <Compile Include="SpriteBatchExtender.cs" />
+    <Compile Include="DrawableInterface.cs" />
+    <Compile Include="Texture2DMulti.cs" />
+    <Compile Include="Texture2DSwip.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MonoGame\MonoGame.Framework\bin\Switch\AnyCPU\Debug\Switch\MonoGame.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Switch.csproj">
-      <Project>{c29cdabf-cabe-c8e1-9646-72616d65776f}</Project>
-      <Name>MonoGame.Framework.Switch</Name>
+    <ProjectReference Include="..\..\Core\Core.Switch.csproj">
+      <Project>{1d0412eb-d9d8-4376-ad80-6641023fc98c}</Project>
+      <Name>Core.Switch</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

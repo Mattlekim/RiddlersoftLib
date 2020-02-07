@@ -88,6 +88,31 @@ namespace Test
             return pe;
         }
 
+        public ParticalEffect BuildRobotSmokeEffect(ContentManager content)
+        {
+            ParticalEffect pe = new ParticalEffect();
+            ConeEmitter ce = new ConeEmitter(5f)
+            {
+                MinRadious = -MathHelper.PiOver2 - .2f,
+                MaxRadious = -MathHelper.PiOver2 + .2f,
+                ParticalSpeed = 1,
+                ReleaseAmount = 2f, //1 would be no delay 0 would never release
+                Function = EmmiterFunction.Explosive,
+                Initial_LifeTime = new FloatRange(1, 2),
+                Initial_Scale = new FloatRange(.1f, .2f),
+                Initial_Angulor_Velocity = new FloatRange(-.1f, .1f),
+                Initial_Colour = new ColourRange(Color.Black, Color.DarkGray),
+                Radius = 5,
+            };
+            ce.SetTexture(content.Load<Texture2D>("Cloud003"));
+            ce.AddModifyer(new LinearScaleModifyer(ce) { EndScale = 2, });
+            ce.AddModifyer(new DampaningModifyer(.01f, ce) { DampenAngulorVelocity = true, AngulorDampaningAmount = .01f, });
+            ce.AddModifyer(new StateFadeModifyer(ce) { InitialFade = .6f, MiddleLifeTime = .1f, MiddleStateFade = .8f, EndFade = 0f, });
+            ce.AddModifyer(new LinearGravityModifyer(ce) { Gravity = new Vector2(0, .2f), });
+            pe.AddEmitter(ce);
+            return pe;
+        }
+
         public ParticalEffect BuildExhaustEffect(ContentManager content)
         {
             ParticalEffect pe = new ParticalEffect();
@@ -188,6 +213,29 @@ namespace Test
             return pe;
         }
 
+        public ParticalEffect BuildGreenSmoke(ContentManager content)
+        {
+            ParticalEffect pe = new ParticalEffect();
+
+            RectangleEmitter re = new RectangleEmitter(new Rectangle(0, 0, 80, 80))
+            {
+                Initial_Scale = new FloatRange(.2f, .4f),
+                Initial_Velocity = new Vector2Range(new Vector2(-.5f,-.05f), new Vector2(.5f,-.1f)),
+                ReleaseAmount = .05f,
+                MaxParticles = 100,
+                Initial_Colour = new ColourRange(Color.Green, Color.LawnGreen),
+                Initial_LifeTime = new FloatRange(5,10),
+                Initial_Rotaiton = new FloatRange(-.1f,.1f),
+            };
+            re.SetTexture(content.Load<Texture2D>("Particle001"));
+            re.AddModifyer(new LinearScaleModifyer(re) { EndScale = 8, });
+            re.AddModifyer(new DampaningModifyer(.01f, re) { DampenAngulorVelocity = true, AngulorDampaningAmount = .01f, });
+            re.AddModifyer(new StateFadeModifyer(re) { InitialFade = 0, MiddleLifeTime = .3f, MiddleStateFade = .4f, EndFade = 0f, });
+            re.AddModifyer(new LinearGravityModifyer(re) { Gravity = new Vector2(0, .1f), });
+            pe.AddEmitter(re);
+            return pe;
+        }
+
         Riddlersoft.Graphics.Texture2DSwip _tex;
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -199,8 +247,8 @@ namespace Test
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            pEffect = BuildClockWorkCloud(Content); //this loades in an effect
-            pEffect2 = BuildClockWorkCloud(Content); //this loads in a second effect
+            pEffect = BuildRobotSmokeEffect(Content); //this loades in an effect
+            pEffect2 = BuildGreenSmoke(Content); //this loads in a second effect
 
             lighteffect = Lighting2D.Load(Content);
 
@@ -253,7 +301,7 @@ namespace Test
             pEffect2.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //Window.Title = pEffect.Emitters[0].Particals.Count.ToString();
             // TODO: Add your update logic here
-
+            this.Window.Title = pEffect2.Emitters[0].Particals.Count.ToString();
             base.Update(gameTime);
         }
         /// <summary>
@@ -268,20 +316,19 @@ namespace Test
 
             spriteBatch.Begin();
             spriteBatch.Draw(bg, Vector2.Zero, Color.White);
+            pEffect.Render(spriteBatch);
+           
             pEffect2.Render(spriteBatch);
             spriteBatch.End();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
-
-            pEffect.Render(spriteBatch);
-            spriteBatch.End();
-            GraphicsDevice.Clear(Color.Black);
+           
+            
             spriteBatch.Begin();
             _tex.Draw(spriteBatch, new Vector2(200, 200), Color.White);
             
             spriteBatch.End();
 
-            eEffect.Draw(spriteBatch);
+          //  eEffect.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

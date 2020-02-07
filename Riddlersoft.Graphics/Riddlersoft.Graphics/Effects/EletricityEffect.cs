@@ -22,7 +22,7 @@ namespace Riddlersoft.Graphics.Effects
 
         private const float MaxAirSparkLenght = 80;
         private const int NumberOfAirSparks = 3;
-        public float SparkGap = 79 * 79;
+        public float SparkGap = 80 * 80;
 
         private List<Spark> _sparks = new List<Spark>();
 
@@ -69,17 +69,14 @@ namespace Riddlersoft.Graphics.Effects
             }
 
                 for (int sources = 0; sources < _powerSource.Count; sources++)
-                if (_powerSource[sources].Powered)
+                if (_powerSource[sources].Powered && !_powerSource[sources].RecivedPower)
                 {
                     bool connected = false;
                     for (int target = 0; target < _powerSource.Count; target++)
 
                         if (sources != target)
                         {
-                            if (!_powerSource[target].Powered)
-                            {
-                                float dista = Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position);
-                            }
+                            
                             if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= SparkGap + (_rd.NextDouble() * 20))
                             {
                                 _powerSource[target].RecivedPower = true;

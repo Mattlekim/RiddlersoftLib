@@ -1,7 +1,0 @@
-D:\Programming\Libs\MqSqlDatabaseInterface\bin\Debug\netstandard1.1\MySqlDI.deps.json
-D:\Programming\Libs\MqSqlDatabaseInterface\bin\Debug\netstandard1.1\MySqlDI.dll
-D:\Programming\Libs\MqSqlDatabaseInterface\bin\Debug\netstandard1.1\MySqlDI.pdb
-D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.1\MySqlDatabseInterface.csprojResolveAssemblyReference.cache
-D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.1\MySqlDatabseInterface.AssemblyInfo.cs
-D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.1\MySqlDI.dll
-D:\Programming\Libs\MqSqlDatabaseInterface\obj\Debug\netstandard1.1\MySqlDI.pdb

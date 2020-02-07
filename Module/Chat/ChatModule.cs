@@ -20,7 +20,8 @@ namespace Riddlersoft.Modules.Chat
         public Vector2 TextPadding { get; set; } = new Vector2(50, 50);
 
         internal Random Rd = new Random();
-        
+
+        public bool Pause = false;
 
         public int ResponceSpacing = 80;
 
@@ -189,6 +190,9 @@ namespace Riddlersoft.Modules.Chat
         float fadeSpd = 4f;
         public override void Update(GameTime gameTime)
         {
+            if (Pause)
+                return;
+
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (State == ConversationState.None)

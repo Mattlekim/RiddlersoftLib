@@ -58,7 +58,7 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MonoGame\MonoGame.Framework\bin\Switch\AnyCPU\Debug\Switch\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Switch\AnyCPU\Debug\Switch\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -67,9 +67,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{10867c37-8a7f-4fb7-a6bf-94c6987cb9e8}</Project>
-      <Name>Core</Name>
+    <ProjectReference Include="..\Core\Core.Switch.csproj">
+      <Project>{1d0412eb-d9d8-4376-ad80-6641023fc98c}</Project>
+      <Name>Core.Switch</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

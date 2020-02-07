@@ -346,7 +346,7 @@ namespace Riddlersoft.Modules.Chat
             else
             if (text.Length > 1 && text[text.Length - 1] == '\n' && _lastChar != _currentChar)
             {
-                delay = 1f;
+                delay = 1f * (1200f / TextSpeed);
                 text = text.Insert(text.Length - 1, "_");
             }
             else

@@ -53,7 +53,7 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MonoGame\MonoGame.Framework\bin\Switch\AnyCPU\Debug\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Switch\AnyCPU\Debug\Switch\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,8 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseCamera.cs" />
+    <Compile Include="CardinalDirection.cs" />
+    <Compile Include="Collisions\BaseTile.cs" />
+    <Compile Include="Collisions\Collision.cs" />
+    <Compile Include="Collisions\Coordinate.cs" />
+    <Compile Include="Collisions\RayCollisionDetector.cs" />
     <Compile Include="ComplexString.cs" />
     <Compile Include="ComplexTexture.cs" />
+    <Compile Include="Console.cs" />
     <Compile Include="Debug\Debugger.cs" />
     <Compile Include="Disk\DiskHandler.cs" />
     <Compile Include="Disk\DiskState.cs" />
@@ -81,6 +87,8 @@
     <Compile Include="Input\GamePadApi.cs" />
     <Compile Include="Input\KeyboardAPI.cs" />
     <Compile Include="Input\Mouse.cs" />
+    <Compile Include="Line.cs" />
+    <Compile Include="MathFunctions.cs" />
     <Compile Include="Networking\CategoryHelper.cs" />
     <Compile Include="Networking\Leaderboard.cs" />
     <Compile Include="Networking\LeaderboardFilter.cs" />
