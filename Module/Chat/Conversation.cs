@@ -311,6 +311,107 @@ namespace Riddlersoft.Modules.Chat
         protected float _flasher = 0;
         Vector2 pos;
         private float delay = 0;
+
+        public virtual void DrawLightMap(SpriteBatch sb)
+        {
+
+            if (_activeSnippit == -1)
+                return;
+
+
+            Snippit sn = _snippits[_activeSnippit];
+            string text = _snippits[_activeSnippit].WhosTalking;
+
+            if (TypeOfConversation == ConversationType.Active)
+            {
+                sb.DrawString(_chat.FontSmall, text, new Vector2(640, 126), Color.Black, 0f, _chat.FontSmall.MeasureString(text) * .5f,
+                    1f, SpriteEffects.None, 0f);
+                sb.DrawString(_chat.FontSmall, text, new Vector2(640, 120), _chat.TextColour, 0f, _chat.FontSmall.MeasureString(text) * .5f,
+                    1f, SpriteEffects.None, 0f);
+                text = "=============================================";
+                sb.DrawString(_chat.FontSmall, text, new Vector2(640, 166), Color.Black, 0f, _chat.FontSmall.MeasureString(text) * .5f,
+                    1f, SpriteEffects.None, 0f);
+                sb.DrawString(_chat.FontSmall, text, new Vector2(640, 160), _chat.TextColour, 0f, _chat.FontSmall.MeasureString(text) * .5f,
+                    1f, SpriteEffects.None, 0f);
+            }
+            text = TextHelper.Lerp(_snippits[_activeSnippit].Text, _textProgress);
+
+            _lastChar = _currentChar;
+            _currentChar = text.Length;
+
+            if (text.Length > 0 && text[text.Length - 1] == ' ' && _lastChar != _currentChar)
+            {
+                delay = (float)_chat.Rd.NextDouble() * .2f;
+                text += " ";
+            }
+            else
+            if (text.Length > 1 && text[text.Length - 1] == '\n' && _lastChar != _currentChar)
+            {
+                delay = 1f * (1200f / TextSpeed);
+                text = text.Insert(text.Length - 1, "_");
+            }
+            else
+                if (text.Length > 0 && text[text.Length - 1] == '\n')
+                text = text.Insert(text.Length - 1, "_");
+            else
+                text += "_";
+
+            sb.DrawString(_chat.FontSmall, text, TextOffset + _TextDrawPos + new Vector2(0, 6), Color.Black);
+            sb.DrawString(_chat.FontSmall, text, TextOffset + _TextDrawPos, _chat.TextColour);
+
+
+
+            foreach (TexturePosition tp in sn.Textures)
+            {
+                if (tp.Percentage < _textProgress)
+                    sb.Draw(tp.Sprite, tp.Pos + _TextDrawPos, null, Color.White, 0f, Vector2.Zero, tp.Scale, SpriteEffects.None, 0f);
+            }
+
+            if (_textProgress >= 1)
+            {
+                float drawX = _TextDrawPos.X + 20;
+                float delay = 1 / (float)_responces.Count;
+                Color tmp = _chat.TextResponceColour;
+                for (int i = 0; i < _responces.Count; i++)
+                {
+                    if (i == _responceSelected)
+                        tmp = _chat.TextResponceSelecteColour;
+                    else
+                        tmp = _chat.TextResponceColour;
+
+                    float fade = MathHelper.Clamp(((_textProgress - 1) - (delay * i) * delay), 0, 1);
+                    sb.DrawString(_chat.FontSmall, _responces[i].Text, new Vector2(drawX, _TextDrawPos.Y + _textHeight + 26), Color.Black);
+                    sb.DrawString(_chat.FontSmall, _responces[i].Text, new Vector2(drawX, _TextDrawPos.Y + _textHeight + 20), tmp);
+
+                    if (i == _responceSelected)
+                        fade *= Math.Abs(_flasher);
+                    else
+                        fade = 0;
+
+                    if (_responces.Count == 1)
+                        fade = 0;
+
+                    sb.DrawString(_chat.FontSmall, ">", new Vector2(drawX - 20, _TextDrawPos.Y + _textHeight + 20), tmp * fade);
+                    drawX += _chat.FontSmall.MeasureString(_responces[i].Text).X + _chat.ResponceSpacing;
+
+                    sb.DrawString(_chat.FontSmall, "<", new Vector2(drawX - _chat.ResponceSpacing, _TextDrawPos.Y + _textHeight + 20), tmp * fade);
+                }
+                if (TypeOfConversation == ConversationType.Active)
+                    if (_responces.Count == 0)
+                    {
+
+                        sb.DrawString(_chat.FontSmall, "CONTINUE_", new Vector2(_area.X + _area.Width - _chat.TextPadding.X -
+                            _chat.FontSmall.MeasureString("CONTINUE_").X, _area.Y + _area.Height - 144), Color.Black * Math.Abs(_flasher));
+
+                        sb.DrawString(_chat.FontSmall, "CONTINUE_", new Vector2(_area.X + _area.Width - _chat.TextPadding.X -
+                            _chat.FontSmall.MeasureString("CONTINUE_").X, _area.Y + _area.Height - 150), _chat.TextColour * Math.Abs(_flasher));
+
+                    }
+            }
+
+
+        }
+
         public virtual void Draw(SpriteBatch sb)
         {
             

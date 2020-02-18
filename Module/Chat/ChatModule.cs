@@ -253,5 +253,31 @@ namespace Riddlersoft.Modules.Chat
             _activeConversation.Draw(sb);
         }
 
+        public void DrawLightMap(SpriteBatch sb)
+        {
+            if (_imediateTerminate)
+            {
+                _imediateTerminate = false;
+                fade = 0;
+                return;
+            }
+            if (State == ConversationState.None)
+            {
+                sb.Draw(_pixel, new Rectangle(0, 0, 1280, 720), _screenColour * fade);
+                sb.Draw(_pixel, _area, _bgColour * fade);
+                return;
+            }
+            else
+            if (_activeConversation.AllowChatToDraw)
+            {
+                sb.Draw(_pixel, new Rectangle(0, 0, 1280, 720), _screenColour * fade);
+                sb.Draw(_pixel, _area, _bgColour * fade);
+            }
+
+            if (_activeConversation.ScreenTexture != null)
+                sb.Draw(_activeConversation.ScreenTexture, Vector2.Zero, _screenColour);
+            _activeConversation.DrawLightMap(sb);
+        }
+
     }
 }

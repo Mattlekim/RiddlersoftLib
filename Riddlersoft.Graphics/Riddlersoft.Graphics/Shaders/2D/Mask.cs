@@ -37,7 +37,7 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _enableMask = value;
-             //   Parameters["Enabled"].SetValue(value);
+                Parameters["Enabled"].SetValue(value);
             }
         }
 

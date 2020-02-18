@@ -61,10 +61,12 @@ namespace Riddlersoft.Modules.Chat
         public byte Data;
 
         private Texture2D _background;
+        private Texture2D _backgroundLight;
 
-        public void SetTexture(Texture2D tex)
+        public void SetTexture(Texture2D tex, Texture2D light)
         {
             _background = tex;
+            _backgroundLight = light;
         }
         
         public void SetAcher(int id, SpeachBubbleAcher ancher)
@@ -79,6 +81,7 @@ namespace Riddlersoft.Modules.Chat
         {
             _font = font;
             _background = parent.Game.Content.Load<Texture2D>("imgs\\GUI\\speachbubble");
+            _backgroundLight = parent.Game.Content.Load<Texture2D>("imgs\\GUI\\speachbubblelight");
             TypeOfConversation = ConversationType.Passive;
             ScreenColour = Color.Transparent;
             BackgroundColour = Color.White;
@@ -138,6 +141,33 @@ namespace Riddlersoft.Modules.Chat
             BubbleHeight = height;
         }
 
+        public void DrawSpeachBubbleLight(SpriteBatch sb, Vector2 pos, int width, int height)
+        {
+            pos.X = Convert.ToInt32(pos.X);
+            pos.Y = Convert.ToInt32(pos.Y);
+            //draw coners
+            sb.Draw(_background, pos, _parts[0], Color.White);
+            sb.Draw(_background, pos + new Vector2(width, 0), _parts[1], Color.White);
+
+            sb.Draw(_background, pos + new Vector2(0, height), _parts[2], Color.White);
+            sb.Draw(_background, pos + new Vector2(width, height), _parts[3], Color.White);
+
+            Point p = pos.ToPoint();
+            //Draw sides
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y, width - _parts[0].Width, _parts[4].Height), _parts[4], Color.White);
+            sb.Draw(_background, new Rectangle(p.X + width, p.Y + _parts[0].Height, _parts[5].Width, height - _parts[0].Height), _parts[5], Color.White);
+
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y + height, width - _parts[0].Width, _parts[6].Height), _parts[6], Color.White);
+            sb.Draw(_background, new Rectangle(p.X, p.Y + _parts[0].Height, _parts[7].Width, height - _parts[0].Height), _parts[7], Color.White);
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width, p.Y + _parts[0].Height, width - _parts[0].Width, height - _parts[0].Height), _parts[8], Color.White);
+
+            sb.Draw(_background, new Rectangle(p.X + _parts[0].Width + 50, p.Y + height + 18, _parts[9].Width, _parts[9].Height), _parts[9], Color.White);
+
+            BubbleHeight = height;
+        }
+
         public void DrawSpeachBubble(SpriteBatch sb, Vector2 pos, int width, int height, Color col)
         {
             pos.X = Convert.ToInt32(pos.X);
@@ -166,6 +196,27 @@ namespace Riddlersoft.Modules.Chat
         }
 
         Vector2 drawpos;
+
+        public override void DrawLightMap(SpriteBatch sb)
+        {
+            Snippit sn = _snippits[_activeSnippit];
+            string text = _snippits[_activeSnippit].WhosTalking;
+
+            int p1;
+            if (_snippits[_activeSnippit].WhosTalking == string.Empty)
+                drawpos = Vector2.Zero;
+            else
+            {
+                p1 = Convert.ToInt32(_snippits[_activeSnippit].WhosTalking);
+                if (p1 == 0)
+                    drawpos = _sb1.Postion;
+                else
+                    drawpos = _sb2.Postion;
+            }
+            Vector2 pos = _font.MeasureString(_snippits[_activeSnippit].Text) + new Vector2(40, 10);
+            DrawSpeachBubbleLight(sb, drawpos - new Vector2(30, 24), (int)pos.X, (int)pos.Y);
+        }
+
         public override void Draw(SpriteBatch sb)
         {
             if (_activeSnippit == -1)

@@ -14,5 +14,7 @@ namespace Riddlersoft.Graphics.Effects
         public Vector2 Position;
         public bool RecivedPower;
         public bool ForceAirSparks;
+
+        public float SparkGap;
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/Mask.fx</SourceFile>
-  <SourceTime>2020-02-10T10:06:52.6265592+00:00</SourceTime>
-  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/bin/Windows/Content/Shaders/2D/Mask.xnb</DestFile>
-  <DestTime>2020-02-10T10:08:17.4689549+00:00</DestTime>
+  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/BasicLighting.fx</SourceFile>
+  <SourceTime>2020-02-06T23:48:10.9780617+00:00</SourceTime>
+  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/binSwitch/Shaders/2D/BasicLighting.xnb</DestFile>
+  <DestTime>2020-02-08T14:20:58.6169619+00:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
   <Processor>EffectProcessor</Processor>

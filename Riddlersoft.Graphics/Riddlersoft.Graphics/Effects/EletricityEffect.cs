@@ -22,7 +22,7 @@ namespace Riddlersoft.Graphics.Effects
 
         private const float MaxAirSparkLenght = 80;
         private const int NumberOfAirSparks = 3;
-        public float SparkGap = 80 * 80;
+        public const float SparkGap = 80 * 80;
 
         private List<Spark> _sparks = new List<Spark>();
 
@@ -46,7 +46,7 @@ namespace Riddlersoft.Graphics.Effects
 
         public void AddConduit(Vector2 pos, bool powered)
         {
-            _powerSource.Add(new Conduit() { Position = pos, Powered = powered, });
+            _powerSource.Add(new Conduit() { Position = pos, Powered = powered, SparkGap = SparkGap});
         }
 
         public EletricityEffect(Game game)
@@ -71,16 +71,18 @@ namespace Riddlersoft.Graphics.Effects
                 for (int sources = 0; sources < _powerSource.Count; sources++)
                 if (_powerSource[sources].Powered && !_powerSource[sources].RecivedPower)
                 {
+                    
                     bool connected = false;
                     for (int target = 0; target < _powerSource.Count; target++)
 
                         if (sources != target)
                         {
                             
-                            if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= SparkGap + (_rd.NextDouble() * 20))
+                            if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= _powerSource[sources].SparkGap + (_rd.NextDouble() * 20))
                             {
-                                _powerSource[target].RecivedPower = true;
-                                for (int pass = 0; pass < 2; pass++)
+                                if (!_powerSource[target].Powered)
+                                    _powerSource[target].RecivedPower = true;
+                               // for (int pass = 0; pass < 2; pass++)
                                 {
                                     Vector2 v = _powerSource[sources].Position;
                                     for (int i = 0; i < NumberSparkPoints - 1; i++)

@@ -30,7 +30,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 
 	  // Apply brightness.
 	float4 col = Brightness - 1;
-	//if (EnableLightMap == true)
+	if (EnableLightMap == true)
 	{
 		  // Apply contrast.
 		//pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;
@@ -42,7 +42,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
       //  pixelColor.rgb *= max(AmbientBrigthness, col.a);
         return pixelColor;
     }
-	//else
+	else
 	{
 		  pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;
 	}

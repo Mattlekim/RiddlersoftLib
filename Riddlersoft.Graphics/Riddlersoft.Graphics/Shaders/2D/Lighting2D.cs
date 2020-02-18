@@ -75,7 +75,7 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _enableLightMap = value;
-              //  Parameters["EnableLightMap"].SetValue(value);
+                Parameters["EnableLightMap"].SetValue(value);
             }
         }
 
