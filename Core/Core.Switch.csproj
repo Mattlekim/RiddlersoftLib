@@ -100,7 +100,9 @@
     <Compile Include="Networking\SortOrder.cs" />
     <Compile Include="Networking\Utilitys.cs" />
     <Compile Include="PasswordGen.cs" />
+    <Compile Include="PathFollower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Range.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Screen\ScreenInformation.cs" />
     <Compile Include="Screen\ScreenManiger.cs" />

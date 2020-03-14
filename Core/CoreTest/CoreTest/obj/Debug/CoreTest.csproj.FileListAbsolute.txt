@@ -35,3 +35,6 @@ E:\Programming\OSR2\Libs\Core\CoreTest\CoreTest\obj\Debug\CoreTest.csprojResolve
 E:\Programming\OSR2\Libs\Core\CoreTest\CoreTest\obj\Debug\CoreTest.exe
 E:\Programming\OSR2\Libs\Core\CoreTest\CoreTest\obj\Debug\CoreTest.pdb
 E:\Programming\OSR2\Libs\Core\CoreTest\CoreTest\bin\Debug\MonoGame.Framework.pdb
+E:\Programming\RiddlersoftLib\Core\CoreTest\CoreTest\bin\Debug\CoreTest.exe.config
+E:\Programming\RiddlersoftLib\Core\CoreTest\CoreTest\obj\Debug\CoreTest.exe
+E:\Programming\RiddlersoftLib\Core\CoreTest\CoreTest\obj\Debug\CoreTest.pdb

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/RiddlersoftLib/Module/Content/load.png</SourceFile>
+  <SourceFile>C:/Programming/RiddlersoftLib/Module/Content/load.png</SourceFile>
   <SourceTime>2019-12-12T16:48:24.9003745+00:00</SourceTime>
-  <DestFile>E:/Programming/RiddlersoftLib/Module/Content/bin/Windows/Content/load.xnb</DestFile>
-  <DestTime>2019-12-13T21:41:30.2079036+00:00</DestTime>
+  <DestFile>C:/Programming/RiddlersoftLib/Module/Content/bin/Windows/Content/load.xnb</DestFile>
+  <DestTime>2020-03-09T17:44:07.057484+00:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
+  <ImporterTime>2018-12-08T16:35:54+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-18T09:10:12.2274564+01:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T16:35:54+00:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

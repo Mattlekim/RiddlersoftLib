@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/sparkline.png</SourceFile>
+  <SourceFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/sparkline.png</SourceFile>
   <SourceTime>2020-01-25T23:43:20.1876301+00:00</SourceTime>
-  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/binWindows/sparkline.xnb</DestFile>
-  <DestTime>2020-02-06T23:47:42.3270436+00:00</DestTime>
+  <DestFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/binWindows/sparkline.xnb</DestFile>
+  <DestTime>2020-03-09T17:39:25.3958728+00:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
+  <ImporterTime>2020-03-09T17:36:17.160099+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-18T09:10:12.2274564+01:00</ProcessorTime>
+  <ProcessorTime>2020-03-09T17:36:17.160099+00:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

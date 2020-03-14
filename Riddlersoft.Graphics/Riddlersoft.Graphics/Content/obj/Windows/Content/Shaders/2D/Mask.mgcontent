@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/Mask.fx</SourceFile>
+  <SourceFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/Mask.fx</SourceFile>
   <SourceTime>2020-02-10T10:06:52.6265592+00:00</SourceTime>
-  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/bin/Windows/Content/Shaders/2D/Mask.xnb</DestFile>
-  <DestTime>2020-02-10T10:08:17.4689549+00:00</DestTime>
+  <DestFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/bin/Windows/Content/Shaders/2D/Mask.xnb</DestFile>
+  <DestTime>2020-03-09T17:44:08.1397275+00:00</DestTime>
   <Importer>EffectImporter</Importer>
-  <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
+  <ImporterTime>2018-12-08T16:35:54+00:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
-  <ProcessorTime>2018-09-18T09:10:12.2274564+01:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T16:35:54+00:00</ProcessorTime>
   <Parameters>
     <Key>DebugMode</Key>
     <Value>Auto</Value>
   </Parameters>
   <Dependencies>
-    <string>E:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\Content\Shaders\2D\Macros2D.fxh</string>
+    <string>C:\Programming\RiddlersoftLib\Riddlersoft.Graphics\Riddlersoft.Graphics\Content\Shaders\2D\Macros2D.fxh</string>
   </Dependencies>
   <BuildAsset />
   <BuildOutput />
