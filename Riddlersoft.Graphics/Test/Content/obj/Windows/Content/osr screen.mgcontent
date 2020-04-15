@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/osr screen.png</SourceFile>
+  <SourceFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/osr screen.png</SourceFile>
   <SourceTime>2019-12-19T12:04:13.2517179+00:00</SourceTime>
-  <DestFile>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/bin/Windows/Content/osr screen.xnb</DestFile>
-  <DestTime>2019-12-19T12:04:53.2308753+00:00</DestTime>
+  <DestFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/bin/Windows/Content/osr screen.xnb</DestFile>
+  <DestTime>2020-04-04T13:51:15.9150921+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-09-18T09:10:12.2274564+01:00</ImporterTime>
+  <ImporterTime>2018-12-08T16:35:54+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-09-18T09:10:12.2274564+01:00</ProcessorTime>
+  <ProcessorTime>2018-12-08T16:35:54+00:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

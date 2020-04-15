@@ -11,6 +11,8 @@ using Riddlersoft.Graphics.Shaders;
 using Riddlersoft.Graphics.Shaders._2D;
 
 using Riddlersoft.Graphics.Effects;
+
+using Riddlersoft.Graphics.Text;
 namespace Test
 {
     /// <summary>
@@ -27,13 +29,15 @@ namespace Test
         ParticalEffect pEffect2;
 
         EletricityEffect eEffect;
+
+        StringEffect text;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-
+            
         }
 
         /// <summary>
@@ -258,6 +262,32 @@ namespace Test
             IsMouseVisible = true;
 
             eEffect = new EletricityEffect(this);
+
+            text = new StringEffect(Content.Load<SpriteFont>("font"), "test string lets see how this well this works.", new Vector2(50,50));
+        
+            Riddlersoft.Graphics.Text.Modifyers.FadeTransition ft = new Riddlersoft.Graphics.Text.Modifyers.FadeTransition(1f, 1f, .1f, 10);
+          //  text.AddModifyer(ft);
+
+            Riddlersoft.Graphics.Text.Modifyers.SpawnDelayModifyer sdm = new Riddlersoft.Graphics.Text.Modifyers.SpawnDelayModifyer(.05f);
+          
+            text.AddModifyer(sdm);
+
+            text.AddModifyer(new Riddlersoft.Graphics.Text.Modifyers.ScaleTransition(0, 1, .5f)); //fixs thiszfire
+            
+            Riddlersoft.Graphics.Text.Modifyers.ThreeWayScaleModifyer st = new Riddlersoft.Graphics.Text.Modifyers.ThreeWayScaleModifyer(1.2f, 1f, .8f, 2f, 1.2f, 3f);
+            st.LimitRange = false;
+            st.LowerLimit = 10;
+            st.UpperLimit = 20;
+            text.AddModifyer(st);
+
+            Riddlersoft.Graphics.Text.Modifyers.ThreeWayColourModifyer cl = new Riddlersoft.Graphics.Text.Modifyers.ThreeWayColourModifyer(Color.Red, 1f, Color.Blue, 2f, Color.Red, 3f);
+            text.AddModifyer(cl);
+
+            Riddlersoft.Graphics.Text.Modifyers.LoopLifetimeModiyer lm = new Riddlersoft.Graphics.Text.Modifyers.LoopLifetimeModiyer(1f, 3f);
+            lm.Tag = "loop";
+            text.AddModifyer(lm);
+
+            text.BuildEffect();
         }
 
         /// <summary>
@@ -289,6 +319,7 @@ namespace Test
             {
                 _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
                 pEffect.Trigger(new Point(ms.Position.X, ms.Position.Y), 1);
+                text.DisableModifyer("loop");
             }
 
             if (ms.RightButton == ButtonState.Pressed) //this will keep trigger
@@ -301,7 +332,10 @@ namespace Test
             pEffect2.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             //Window.Title = pEffect.Emitters[0].Particals.Count.ToString();
             // TODO: Add your update logic here
-            this.Window.Title = pEffect2.Emitters[0].Particals.Count.ToString();
+            //this.Window.Title = pEffect2.Emitters[0].Particals.Count.ToString();
+
+            text.Update(dt);
+            this.Window.Title = text.debug;
             base.Update(gameTime);
         }
         /// <summary>
@@ -311,8 +345,6 @@ namespace Test
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-
-
 
             spriteBatch.Begin();
             spriteBatch.Draw(bg, Vector2.Zero, Color.White);
@@ -325,7 +357,7 @@ namespace Test
             
             spriteBatch.Begin();
             _tex.Draw(spriteBatch, new Vector2(200, 200), Color.White);
-            
+            text.Draw(spriteBatch);
             spriteBatch.End();
 
           //  eEffect.Draw(spriteBatch);

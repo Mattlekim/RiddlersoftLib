@@ -80,6 +80,20 @@
     <Compile Include="DrawableInterface.cs" />
     <Compile Include="Texture2DMulti.cs" />
     <Compile Include="Texture2DSwip.cs" />
+    <Compile Include="Text\Decoders\CharData.cs" />
+    <Compile Include="Text\Decoders\ColorDecoder.cs" />
+    <Compile Include="Text\Decoders\Decoders.cs" />
+    <Compile Include="Text\LifeTimeTrigger.cs" />
+    <Compile Include="Text\Modifyers\ThreeWayScaleModifyer.cs" />
+    <Compile Include="Text\Modifyers\ThreeWayColorModifyer.cs" />
+    <Compile Include="Text\Modifyers\ColorModifyer.cs" />
+    <Compile Include="Text\Modifyers\LoopLifetimeModiyer.cs" />
+    <Compile Include="Text\Modifyers\ScaleTransition.cs" />
+    <Compile Include="Text\Modifyers\FadeTransition.cs" />
+    <Compile Include="Text\Modifyers\SpawnDelayModifyer.cs" />
+    <Compile Include="Text\Modifyers\TextModifyer.cs" />
+    <Compile Include="Text\StringEffect.cs" />
+    <Compile Include="Text\TextChar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -98,6 +112,7 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

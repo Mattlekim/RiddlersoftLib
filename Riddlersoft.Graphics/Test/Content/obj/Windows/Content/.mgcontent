@@ -4,23 +4,45 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Cloud003.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/MultiDot.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/osr screen.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle006.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle001.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/dirt.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/grass.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/foreset2.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/leaf.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Star.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Spikey001.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/SoftSmokey.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle003.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Cloud004.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle005.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/godray.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/shadow.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/normalmap.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Cloud003.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Cloud004.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/dirt.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/font.spritefont</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/foreset2.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/godray.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/grass.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/leaf.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/MultiDot.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/normalmap.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/osr screen.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle001.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle003.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle005.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Particle006.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/shadow.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/SoftSmokey.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Spikey001.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Test/Content/Star.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>
