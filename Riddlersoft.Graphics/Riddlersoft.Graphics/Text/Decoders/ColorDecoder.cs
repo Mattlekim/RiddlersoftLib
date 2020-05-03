@@ -9,13 +9,16 @@ namespace Riddlersoft.Graphics.Text.Decoders
 {
     public class ColorDecoder : TextDecoder
     {
-        public List<Color> Pallet = new List<Color>();
+        private static List<Color> _pallet = new List<Color>();
 
-        private void BuildPallet()
+        public static void AddToPallet(List<Color> colors)
         {
-            Pallet.Add(Color.Red);
-            Pallet.Add(Color.Blue);
-            Pallet.Add(Color.Green);
+            _pallet.AddRange(colors);
+        }
+
+        public static void AddToPallet(Color color)
+        {
+            _pallet.Add(color);
         }
         /// <summary>
         /// decodes colore data from a stirng
@@ -25,8 +28,7 @@ namespace Riddlersoft.Graphics.Text.Decoders
         /// <returns></returns>
         public List<CharData> Decode(string input, out string trimed)
         {
-            if (Pallet.Count <= 0)
-                BuildPallet();
+
 
             List<CharData> output = null;
             int point = 0;
@@ -35,6 +37,9 @@ namespace Riddlersoft.Graphics.Text.Decoders
                 int index = input.IndexOf("#c", point);
                 if (index == -1)
                     break;
+
+                if (_pallet.Count <= 0)
+                    throw new Exception("you must set a colour pallet");
 
                 index += 2;
                 int endIndex = 3;
@@ -51,9 +56,9 @@ namespace Riddlersoft.Graphics.Text.Decoders
                         output = new List<CharData>();
                     output.Add(new CharData()
                     {
-                        Colour = Pallet[i],
+                        Colour = _pallet[i],
                         Count = l,
-                        StartIndex = index,
+                        StartIndex = index - 2,
                     });
 
                     input = input.Remove(index - 2, endIndex);

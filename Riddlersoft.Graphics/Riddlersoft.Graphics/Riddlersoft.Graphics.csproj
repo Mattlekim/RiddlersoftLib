@@ -81,6 +81,7 @@
     <Compile Include="Texture2DMulti.cs" />
     <Compile Include="Texture2DSwip.cs" />
     <Compile Include="Text\Decoders\CharData.cs" />
+    <Compile Include="Text\Decoders\TextureDecoder.cs" />
     <Compile Include="Text\Decoders\ColorDecoder.cs" />
     <Compile Include="Text\Decoders\Decoders.cs" />
     <Compile Include="Text\LifeTimeTrigger.cs" />

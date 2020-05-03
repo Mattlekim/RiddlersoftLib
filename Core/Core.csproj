@@ -82,6 +82,7 @@
     <Compile Include="Disk\RFile.cs" />
     <Compile Include="Disk\RStructor.cs" />
     <Compile Include="Generators\NameGenerator.cs" />
+    <Compile Include="Generators\ProeduralGenerator.cs" />
     <Compile Include="Input\DragEvent.cs" />
     <Compile Include="Input\GamePadApi.cs" />
     <Compile Include="Input\KeyboardAPI.cs" />

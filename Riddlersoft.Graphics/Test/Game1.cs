@@ -13,6 +13,8 @@ using Riddlersoft.Graphics.Shaders._2D;
 using Riddlersoft.Graphics.Effects;
 
 using Riddlersoft.Graphics.Text;
+
+using System.Collections.Generic;
 namespace Test
 {
     /// <summary>
@@ -263,7 +265,9 @@ namespace Test
 
             eEffect = new EletricityEffect(this);
 
-            text = new StringEffect(Content.Load<SpriteFont>("font"), "test string lets see how this well this works.", new Vector2(50,50));
+            Riddlersoft.Graphics.Text.Decoders.TextureDecoder.AddTextures(Content.Load<Texture2D>("Star"));
+
+            text = new StringEffect(Content.Load<SpriteFont>("font"), "test string lets [0] see how this well this [0] works.", new Vector2(450,450));
         
             Riddlersoft.Graphics.Text.Modifyers.FadeTransition ft = new Riddlersoft.Graphics.Text.Modifyers.FadeTransition(1f, 1f, .1f, 10);
           //  text.AddModifyer(ft);
@@ -288,6 +292,8 @@ namespace Test
             text.AddModifyer(lm);
 
             text.BuildEffect();
+
+          
         }
 
         /// <summary>

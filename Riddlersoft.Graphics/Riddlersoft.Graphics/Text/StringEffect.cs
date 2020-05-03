@@ -30,7 +30,7 @@ namespace Riddlersoft.Graphics.Text
 
         public int LetterCount { get { return _chars.Count; } }
 
-        public bool Shadown = true;
+        public bool Shadow = true;
 
         public float Scale = 1;
 
@@ -38,11 +38,28 @@ namespace Riddlersoft.Graphics.Text
 
         public string debug;
 
+        private float _spacing = 1;
+        public float Spacing
+        {
+            get
+            {
+                return _spacing;
+            }
+            set
+            {
+                value = MathHelper.Clamp(value, .5f, 10f);
+                _spacing = value;
+            }
+        }
+
         private List<LifeTimeTrigger> _lifetimeTriggers = new List<LifeTimeTrigger>();
 
         public Action<string> OnModifyerDeactivated;
 
         private List<Decoders.CharData> _colData = null;
+        private List<Decoders.CharData> _textData = null;
+
+
 
         public void AddEventToTime(Action action, float time)
         {
@@ -58,6 +75,10 @@ namespace Riddlersoft.Graphics.Text
             //text = text.Insert(3, "#c0-15");
             Decoders.ColorDecoder cd = new Decoders.ColorDecoder();
             _colData = cd.Decode(text, out _text);
+
+
+            Decoders.TextureDecoder td = new Decoders.TextureDecoder();
+            _textData = td.Decode(_text, out _text);
             _font = font;
 
 //            _text = text;
@@ -108,8 +129,8 @@ namespace Riddlersoft.Graphics.Text
 
         public void BuildEffect()
         {
-           
 
+            bool _addSrpite = false;
             _chars = new List<Text.TextChar>();
 
             float textOffsetX = 0;
@@ -117,6 +138,7 @@ namespace Riddlersoft.Graphics.Text
             float textOffsetY = 0;
             for (int i =0; i<_text.Length;i++)
             {
+                _addSrpite = false;
                 int w = charToBreakAd(i, xNeg);
                 if (i == w)
                 {
@@ -124,9 +146,27 @@ namespace Riddlersoft.Graphics.Text
                     textOffsetX = 0;
                     textOffsetY += 30;
                 }
+                if (_textData != null)
+                {
+                    foreach (Decoders.CharData cd in _textData)
+                    {
+                        if (cd.StartIndex == i)
+                        {
+                            _addSrpite = true;
+                            _chars.Add(new TextChar(cd.Sprite, new Vector2(textOffsetX, textOffsetY)));
+                            textOffsetX += _chars[_chars.Count-1].Sprite.Width  * Scale * _spacing;
+                        }
+                    }
+                }
 
-                _chars.Add(new Text.TextChar(_text[i], new Vector2(textOffsetX, textOffsetY)));
-                textOffsetX += _font.MeasureString(_text[i].ToString()).X * Scale;
+                if (!_addSrpite)
+                {
+                    _chars.Add(new Text.TextChar(_text[i], new Vector2(textOffsetX, textOffsetY)));
+                    textOffsetX += _font.MeasureString(_text[i].ToString()).X * Scale * _spacing;
+                }
+
+
+
                 _chars[_chars.Count - 1].Scale = Scale;
                 _chars[_chars.Count - 1].SetUp(_font);
             }
@@ -146,6 +186,9 @@ namespace Riddlersoft.Graphics.Text
                         _chars[i].Colour = cd.Colour;
                 }
             }
+
+           
+
             for (int i =0; i < _chars.Count; i++)
                 foreach (TextModifyer mod in _modifyers)
                     mod.Apply(_chars[i], this, i);
@@ -203,15 +246,16 @@ namespace Riddlersoft.Graphics.Text
             {
                 if (c.Sprite == null)
                 {
-                    sb.DrawString(_font, c.character, c.Position + Position + new Vector2(2), Color.Black * c.Opacity,
-                       c.Rotation, c.Center, c.Scale, SpriteEffects.None, 0f);
+                    if (Shadow)
+                        sb.DrawString(_font, c.character, c.Position + Position + new Vector2(2), Color.Black * c.Opacity,
+                           c.Rotation, c.Center, c.Scale * Scale, SpriteEffects.None, 0f);
 
                     sb.DrawString(_font, c.character, c.Position + Position, c.Colour * c.Opacity,
-                        c.Rotation, c.Center, c.Scale, SpriteEffects.None, 0f);
+                        c.Rotation, c.Center, c.Scale * Scale, SpriteEffects.None, 0f);
                 }
                 else
                 {
-                    sb.Draw(c.Sprite, c.Position, null, c.Colour, c.Rotation, c.Center, c.Scale, SpriteEffects.None, 0f);
+                    sb.Draw(c.Sprite, c.Position + Position, null, Color.White, c.Rotation, c.Center, c.Scale * Scale, SpriteEffects.None, 0f);
                 }
 
             }
