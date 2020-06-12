@@ -20,13 +20,21 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _maskTexture = value;
-                Parameters["Mask"].SetValue(value);
+
+              //  GraphicsDevice.Textures[1] = value;
+                //return;
+
+                EffectParameter tex = this.Parameters["Mask"];
+                if (tex == null)
+                    tex = this.Parameters["MaskSampler"];
+                tex.SetValue(value);
+             //   Parameters["Mask"].SetValue(value);
             }
         }
 
         EffectParameter MatrixTransform;
 
-        private const string _path = "Shaders\\2D\\Mask";
+        private const string _path = "Shaders\\Mask";
 
 
         public bool _enableMask = true;
@@ -37,7 +45,11 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _enableMask = value;
-                Parameters["Enabled"].SetValue(value);
+             
+                if (_enableMask)
+                    Parameters["Enabled"].SetValue(1f);
+                else
+                    Parameters["Enabled"].SetValue(0f);
             }
         }
 

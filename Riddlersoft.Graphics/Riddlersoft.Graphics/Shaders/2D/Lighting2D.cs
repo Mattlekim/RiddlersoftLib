@@ -12,7 +12,7 @@ namespace Riddlersoft.Graphics.Shaders._2D
 {
     public class Lighting2D : Effect
     {
-        private const string Path = "Shaders\\2D\\BasicLighting";
+        private const string Path = "Shaders\\BasicLighting";
 
         private float _lightStrenth = 1;
 
@@ -75,7 +75,13 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _enableLightMap = value;
-                Parameters["EnableLightMap"].SetValue(value);
+                //Parameters["EnableLightMap"].SetValue(0f);
+                //return;
+
+                if (_enableLightMap)
+                    Parameters["EnableLightMap"].SetValue(1f);
+                else
+                    Parameters["EnableLightMap"].SetValue(0f);
             }
         }
 
@@ -87,7 +93,15 @@ namespace Riddlersoft.Graphics.Shaders._2D
             set
             {
                 _lightMap = value;
-                Parameters["TextureLight"].SetValue(value);
+               
+             //   GraphicsDevice.Textures[1] = value;
+               // return;
+                EffectParameter tex = this.Parameters["TextureLight"];
+                if (tex == null)
+                    tex = this.Parameters["TextureLightSampler"];
+                tex.SetValue(value);
+
+                //Parameters["TextureLight"].SetValue(value);
             }
         }
 

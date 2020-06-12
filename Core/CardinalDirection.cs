@@ -12,7 +12,7 @@ namespace Riddlersoft.Core
         Right = 1,
         Down = 2,
         Left = 3,
-
+        None = 4,
     }
 
 }

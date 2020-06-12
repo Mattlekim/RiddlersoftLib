@@ -77,14 +77,14 @@ namespace Riddlersoft.Core
                             break;
                     }
 
-                    float drawpos = 1870 - _font.MeasureString(_lines[i].Substring(3)).X * TextScale;
-                    sb.DrawString(_font, _lines[i].Substring(3),_drawLocation + new Vector2(drawpos, LineSpaceing * i),
+                    float drawpos = _drawLocation.X - _font.MeasureString(_lines[i].Substring(3)).X * TextScale;
+                    sb.DrawString(_font, _lines[i].Substring(3),new Vector2(drawpos, _drawLocation.Y + LineSpaceing * i),
                    col * fade, 0f, Vector2.Zero, TextScale,
                    SpriteEffects.None, 0f);
                     continue;
                 }
                 
-                sb.DrawString(_font, _lines[i], _drawLocation + new Vector2(1870 - _font.MeasureString(_lines[i]).X * TextScale, LineSpaceing * i),
+                sb.DrawString(_font, _lines[i], new Vector2(_drawLocation.X - _font.MeasureString(_lines[i]).X * TextScale, _drawLocation.Y + LineSpaceing * i),
                     col * fade, 0f, Vector2.Zero, TextScale,
                     SpriteEffects.None, 0f);
             }

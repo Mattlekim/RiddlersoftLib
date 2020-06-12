@@ -68,69 +68,72 @@ namespace Riddlersoft.Graphics.Effects
                
             }
 
-                for (int sources = 0; sources < _powerSource.Count; sources++)
-                if (_powerSource[sources].Powered && !_powerSource[sources].RecivedPower)
+            for (int sources = 0; sources < _powerSource.Count; sources++)
+                if (_powerSource[sources].Active)
                 {
-                    
-                    bool connected = false;
-                    for (int target = 0; target < _powerSource.Count; target++)
-
-                        if (sources != target)
-                        {
-                            
-                            if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= _powerSource[sources].SparkGap + (_rd.NextDouble() * 20))
-                            {
-                                if (!_powerSource[target].Powered)
-                                    _powerSource[target].RecivedPower = true;
-                               // for (int pass = 0; pass < 2; pass++)
-                                {
-                                    Vector2 v = _powerSource[sources].Position;
-                                    for (int i = 0; i < NumberSparkPoints - 1; i++)
-                                    {
-                                        vec = _powerSource[target].Position - _powerSource[sources].Position;
-                                        dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
-                                        lenght = vec.Length() / NumberSparkPoints;
-                                        _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
-                                        Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
-                                        //_sparks.Add(v + newV);
-                                        v += newV;
-
-                                    }
-                                    //_sparks.Add(v);
-                                    vec = _powerSource[target].Position - v;
-                                    dir = (float)Math.Atan2(vec.Y, vec.X);
-                                    lenght = vec.Length();
-                                    _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
-                                }
-                                connected = true;
-                            }
-
-
-                        }
-                    if (!connected || _powerSource[sources].ForceAirSparks) //if we are not connected we want to create random sparks through the air
+                    _powerSource[sources].Active = false;
+                    if (_powerSource[sources].Powered && !_powerSource[sources].RecivedPower)
                     {
 
-                        for (int p = 0; p < NumberOfAirSparks; p++)
-                        {
-                            Vector2 v = _powerSource[sources].Position;
-                            lenght = (float)_rd.NextDouble() * MaxAirSparkLenght;
-                            dir = (float)_rd.NextDouble() * MathHelper.TwoPi;
-                            Vector2 t = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir)) + v;
-                            for (int i = 0; i < NumberSparkPoints - 1; i++)
-                            {
-                                vec = t - v;
-                                dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
-                                lenght = vec.Length() / NumberSparkPoints;
-                                _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f - (float)i / NumberOfAirSparks, });
-                                Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
-                                //_sparks.Add(v + newV);
-                                v += newV;
+                        bool connected = false;
+                        for (int target = 0; target < _powerSource.Count; target++)
 
+                            if (sources != target)
+                            {
+
+                                if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= _powerSource[sources].SparkGap + (_rd.NextDouble() * 20))
+                                {
+                                    if (!_powerSource[target].Powered)
+                                        _powerSource[target].RecivedPower = true;
+                                    // for (int pass = 0; pass < 2; pass++)
+                                    {
+                                        Vector2 v = _powerSource[sources].Position;
+                                        for (int i = 0; i < NumberSparkPoints - 1; i++)
+                                        {
+                                            vec = _powerSource[target].Position - _powerSource[sources].Position;
+                                            dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
+                                            lenght = vec.Length() / NumberSparkPoints;
+                                            _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
+                                            Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
+                                            //_sparks.Add(v + newV);
+                                            v += newV;
+
+                                        }
+                                        //_sparks.Add(v);
+                                        vec = _powerSource[target].Position - v;
+                                        dir = (float)Math.Atan2(vec.Y, vec.X);
+                                        lenght = vec.Length();
+                                        _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
+                                    }
+                                    connected = true;
+                                }
+
+
+                            }
+                        if (!connected || _powerSource[sources].ForceAirSparks) //if we are not connected we want to create random sparks through the air
+                        {
+
+                            for (int p = 0; p < NumberOfAirSparks; p++)
+                            {
+                                Vector2 v = _powerSource[sources].Position;
+                                lenght = (float)_rd.NextDouble() * MaxAirSparkLenght;
+                                dir = (float)_rd.NextDouble() * MathHelper.TwoPi;
+                                Vector2 t = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir)) + v;
+                                for (int i = 0; i < NumberSparkPoints - 1; i++)
+                                {
+                                    vec = t - v;
+                                    dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
+                                    lenght = vec.Length() / NumberSparkPoints;
+                                    _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f - (float)i / NumberOfAirSparks, });
+                                    Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
+                                    //_sparks.Add(v + newV);
+                                    v += newV;
+
+                                }
                             }
                         }
                     }
                 }
-
             for (int sources = 0; sources < _powerSource.Count; sources++)
             {
                 _powerSource[sources].ForceAirSparks = false;

@@ -13,30 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Shaders/2D/Common.fxh
-/copy:Shaders/2D/Common.fxh
-
-#begin Shaders/2D/Lighting.fxh
-/copy:Shaders/2D/Lighting.fxh
-
-#begin Shaders/2D/Macros.fxh
-/copy:Shaders/2D/Macros.fxh
-
-#begin Shaders/2D/Structures.fxh
-/copy:Shaders/2D/Structures.fxh
-
-#begin Shaders/2D/BasicLighting.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/2D/BasicLighting.fx
-
-#begin Shaders/2D/Mask.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Shaders/2D/Mask.fx
-
 #begin sparkline.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -60,4 +36,37 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sparklineglow.png
+
+#begin Shaders/BasicLighting.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Debug
+/build:Shaders/BasicLighting.fx
+
+#begin Shaders/Common.fxh
+/copy:Shaders/Common.fxh
+
+#begin Shaders/Lighting.fxh
+/copy:Shaders/Lighting.fxh
+
+#begin Shaders/Macros.fxh
+/copy:Shaders/Macros.fxh
+
+#begin Shaders/Macros2D.fxh
+/copy:Shaders/Macros2D.fxh
+
+#begin Shaders/Mask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/Mask.fx
+
+#begin Shaders/Structures.fxh
+/copy:Shaders/Structures.fxh
+
+#begin Shaders/SpriteEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/SpriteEffect.fx
 

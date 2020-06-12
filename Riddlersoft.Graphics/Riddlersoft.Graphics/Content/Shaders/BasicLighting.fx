@@ -19,18 +19,22 @@ float3 AmbientColor = 0.75f;
 
 
 
-bool EnableLightMap = false;
+float EnableLightMap = 1;
+
 
 float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 {
+//	EnableLightMap = EnableLightMap;
+
 	float4 pixelColor = SAMPLE_TEXTURE(Texture, texCoord);
 	float4 lightColor = SAMPLE_TEXTURE(TextureLight, texCoord);
 
 	//  pixelColor.rgb /= pixelColor.a;
 
 	  // Apply brightness.
+	
 	float4 col = Brightness - 1;
-	if (EnableLightMap == true)
+	if (EnableLightMap == 1)
 	{
 		  // Apply contrast.
 		//pixelColor.rgb = ((pixelColor.rgb - 0.5f) * max(Contrast, 0)) + 0.5f;

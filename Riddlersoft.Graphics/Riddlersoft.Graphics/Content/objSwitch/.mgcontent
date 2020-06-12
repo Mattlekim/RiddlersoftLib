@@ -4,8 +4,7 @@
   <Platform>Switch</Platform>
   <Config />
   <SourceFiles>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/2D/BasicLighting.fx</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/sparkline.png</File>
-    <File>E:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/sparklineglow.png</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/SpriteEffect.fx</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/BasicLighting.fx</File>
   </SourceFiles>
 </SourceFileCollection>

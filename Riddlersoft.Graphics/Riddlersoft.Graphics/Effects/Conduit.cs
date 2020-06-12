@@ -10,6 +10,8 @@ namespace Riddlersoft.Graphics.Effects
 {
     public class Conduit
     {
+        public bool Active;
+
         public bool Powered;
         public Vector2 Position;
         public bool RecivedPower;

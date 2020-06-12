@@ -71,6 +71,7 @@
     <Compile Include="Effects\PoligonClass.cs" />
     <Compile Include="PoligonEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenFade.cs" />
     <Compile Include="Shaders\2D\Lighting2D.cs" />
     <Compile Include="Shaders\2D\Mask.cs" />
     <Compile Include="Shaders\2D\Pixalate.cs" />
@@ -97,8 +98,9 @@
     <Compile Include="Text\TextChar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

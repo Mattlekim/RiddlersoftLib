@@ -75,6 +75,7 @@
     <Compile Include="ComplexTexture.cs" />
     <Compile Include="Console.cs" />
     <Compile Include="Debug\Debugger.cs" />
+    <Compile Include="Debug\Performance.cs" />
     <Compile Include="Disk\DiskHandler.cs" />
     <Compile Include="Disk\DiskState.cs" />
     <Compile Include="Disk\FileFormat.cs" />

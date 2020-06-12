@@ -168,8 +168,19 @@ namespace Riddlersoft.Modules.Chat
             BubbleHeight = height;
         }
 
-        public void DrawSpeachBubble(SpriteBatch sb, Vector2 pos, int width, int height, Color col)
+        public void DrawNewSpeachBubble(SpriteBatch sb, Vector2 pos, float scale, Color col)
         {
+            pos.X = Convert.ToInt32(pos.X);
+            pos.Y = Convert.ToInt32(pos.Y);
+
+            sb.Draw(_background, pos, null, col, 0f, new Vector2(_background.Width * .5f, _background.Height), scale, SpriteEffects.None, 0f);
+        }
+
+        public void DrawSpeachBubble(SpriteBatch sb, Vector2 pos, int width, int height, Color col, float scale)
+        {
+
+            DrawNewSpeachBubble(sb, pos + new Vector2(_background.Width * .5f, _background.Height + 30), scale, col);
+            return;
             pos.X = Convert.ToInt32(pos.X);
             pos.Y = Convert.ToInt32(pos.Y);
             //draw coners

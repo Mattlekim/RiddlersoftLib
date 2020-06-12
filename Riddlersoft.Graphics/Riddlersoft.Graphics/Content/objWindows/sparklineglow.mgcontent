@@ -3,11 +3,11 @@
   <SourceFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/sparklineglow.png</SourceFile>
   <SourceTime>2020-01-26T10:29:36.6458051+00:00</SourceTime>
   <DestFile>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/binWindows/sparklineglow.xnb</DestFile>
-  <DestTime>2020-03-09T17:39:25.4141807+00:00</DestTime>
+  <DestTime>2020-06-03T17:38:52.2943625+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2020-03-09T17:36:17.160099+00:00</ImporterTime>
+  <ImporterTime>2020-06-03T17:08:10.510429+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2020-03-09T17:36:17.160099+00:00</ProcessorTime>
+  <ProcessorTime>2020-06-03T17:08:10.510429+01:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
