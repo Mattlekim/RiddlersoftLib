@@ -16,13 +16,35 @@ namespace Riddlersoft.Graphics.Effects
 {
     public class EletricityEffect
     {
+        //how fast the eletricity changes
         private const float SparkFrequency = .04f;
+
+        //how many points each spark is made up of
         private const int NumberSparkPoints = 5;
+        //the amount of deviation between sparks
+        //a bigger number is more zigzag
         private const float SparkPointDeviation = .5f;
 
-        public const float MaxAirSparkLenght = 80;
-        public const int NumberOfAirSparks = 3;
+        //the gap that the sparks can jump
         public const float SparkGap = 80;
+
+        //when there are no conduits how long is a spark
+        public const float MaxAirSparkLenght = 80;
+        //when there is no other conduit to connect to
+        //how many sparks should we produce
+        public const int NumberOfAirSparks = 3;
+
+        /// <summary>
+        /// the minimum of light a conduit can give off
+        /// ie the ciurcle of light
+        /// </summary>
+        public const float MinLightPower = .5f;
+
+        /// <summary>
+        /// the amount of variation we can have on light
+        /// LightCalculation is MinLightPower + minLightPower
+        /// </summary>
+        public const float LightPowerVariation = 2;
 
         private List<Spark> _sparks = new List<Spark>();
 
@@ -31,6 +53,7 @@ namespace Riddlersoft.Graphics.Effects
         private float _sparkTimer = 0;
         private Texture2D _sprite;
         private Texture2D _spriteGlow;
+        private Texture2D _spriteDirectionData;
         private Vector2 _spriteGlowCenter;
 
         public Color Colour = new Color(188, 0, 153);
@@ -56,6 +79,7 @@ namespace Riddlersoft.Graphics.Effects
             Poligons.Setup(game);
             _sprite = game.Content.Load<Texture2D>("sparkline");
             _spriteGlow = game.Content.Load<Texture2D>("imgs\\background\\circle_light");
+            _spriteDirectionData = game.Content.Load<Texture2D>("imgs\\WorldAssets\\LightDirectionCircle");
             _spriteGlowCenter = new Vector2(_spriteGlow.Width * .5f, _spriteGlow.Height * .5f);
         }
         private Random _rd = new Random();
@@ -74,7 +98,7 @@ namespace Riddlersoft.Graphics.Effects
                 _current = _powerSource[sources];
 
                 if (_current.Powered)
-                    _current.GlowIntencity = (float)_rd.NextDouble() * 2f + 1f;
+                    _current.GlowIntencity = (float)_rd.NextDouble() * LightPowerVariation + MinLightPower;
 
                 if (_current.Active)
                 {
@@ -187,6 +211,14 @@ namespace Riddlersoft.Graphics.Effects
                 if (c.Powered || c.HaveRecivedPower)
                     sb.Draw(_spriteGlow, c.Position - camera, null, Colour * .8f, 0f, _spriteGlowCenter, c.GlowIntencity,SpriteEffects.None, 0f);
         }
+
+        public void DrawDirecionLightMap(SpriteBatch sb, Vector2 camera = new Vector2())
+        {
+
+            foreach (Conduit c in _powerSource)
+                if (c.Powered || c.HaveRecivedPower)
+                    sb.Draw(_spriteDirectionData, c.Position - camera, null, Color.White * .8f, 0f, _spriteGlowCenter, c.GlowIntencity, SpriteEffects.None, 0f);
+        }
         /*
         public void DrawLightMapPoligons(SpriteBatch sb, Vector2 camera = new Vector2())
         {
@@ -201,7 +233,7 @@ namespace Riddlersoft.Graphics.Effects
         
         }
         */
-        
+
         public void Draw(SpriteBatch sb, Vector2 camera = new Vector2())
         {
             for (int i = 0; i < _sparks.Count; i++)
