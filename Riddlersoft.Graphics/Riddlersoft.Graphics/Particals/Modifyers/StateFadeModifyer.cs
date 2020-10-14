@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riddlersoft.Core.Xml;
 using Riddlersoft.Graphics.Particals.Emitters;
 
 namespace Riddlersoft.Graphics.Particals.Modifyers
@@ -26,12 +27,27 @@ namespace Riddlersoft.Graphics.Particals.Modifyers
 
         }
 
-        public override void Processes(Partical input, float dt)
+        protected override void _prosses(Partical input, float dt)
         {
             float amount = input.LifeTime / (input.Age + input.LifeTime);
             amount = 1 - amount; //get invers
 
             input.Fade = BasicMath.Lerp3(InitialFade, MiddleStateFade, MiddleLifeTime, EndFade, amount);
+        }
+
+        public override void WriteToFile(CustomXmlWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReadFromFile(CustomXmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CustomModifyer _create()
+        {
+            throw new NotImplementedException();
         }
     }
 }

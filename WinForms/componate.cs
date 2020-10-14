@@ -108,11 +108,11 @@ namespace WinForms
 
         public Rectangle AreaOriginal { get { return _areaOriginal; } set { _areaOriginal = value; } }
 
-        public Color BgColourPrimary = WinFormControler.PrimaryBG;
-        public Color BgColourSecondry = WinFormControler.SecondryBG;
+        public Color BgColourPrimary = Controler.PrimaryBG;
+        public Color BgColourSecondry = Controler.SecondryBG;
 
-        public Color TextColourPrimary = WinFormControler.PrimaryText;
-        public Color TextColourSecondry = WinFormControler.SecondryText;
+        public Color TextColourPrimary = Controler.PrimaryText;
+        public Color TextColourSecondry = Controler.SecondryText;
 
         protected int _tabIndex = -1;
         public int TabIndex {  get { return _tabIndex; } }
@@ -133,6 +133,8 @@ namespace WinForms
         public bool UseParentClickEvent = false;
 
         public Action<object, Point> OnRightClick;
+
+        
 
         public InternalEvent OnClosed;
 
@@ -223,14 +225,14 @@ namespace WinForms
         {
             if (isfocuse)
             {
-                if (WinFormControler.ComponateInFocase != null)
+                if (Controler.ComponateInFocase != null)
                 {
-                    WinFormControler.ComponateInFocase.IsFocuse = false;
+                    Controler.ComponateInFocase.IsFocuse = false;
                 }
 
                 IsFocuse = isfocuse;
 
-                WinFormControler.ComponateInFocase = this;
+                Controler.ComponateInFocase = this;
             }
             Activate();
         }
@@ -265,7 +267,7 @@ namespace WinForms
             _visible = false;
             Active = false;
             if (IsFocuse)
-                WinFormControler.ComponateInFocase = null;
+                Controler.ComponateInFocase = null;
             IsFocuse = false;
             OnClose();
         }
@@ -287,12 +289,9 @@ namespace WinForms
 
         public virtual bool OnLeftMouseClick(Point p)
         {
-            if (id == "debugger")
-            {
-
-            }
+           
             LastMouseClickedPostion = p;
-            WinFormControler.TriggerComponateClicked(this);
+            Controler.TriggerComponateClicked(this);
             if (OnLeftClick != null)
             {
                 OnLeftClick(this, p);
@@ -449,7 +448,7 @@ namespace WinForms
             for (int i = 0; i < Componates.Count; i++)
                 Componates[i].InternalUpdate(dt);
 
-            if (WinFormControler.ComponateInFocase != null)
+            if (Controler.ComponateInFocase != null)
                 if (!IsFocuse && !AllowToRunWhenNotInFocuse)
                     return true;
 
@@ -513,7 +512,7 @@ namespace WinForms
             if (!Active)
                 return false;
 
-            if (WinFormControler.ComponateInFocase != null)
+            if (Controler.ComponateInFocase != null)
                 if (!this.AllowToRunWhenNotInFocuse)
                     return false;
             return true;

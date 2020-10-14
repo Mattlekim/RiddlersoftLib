@@ -108,7 +108,7 @@ namespace WinForms
             Point p = new Point((int)MouseTouch.Position.X, (int)MouseTouch.Position.Y);
             if (_areaCurrent.Contains(p))
             {
-                ScaleTimer += dt * WinFormControler.ScaleSpeed;
+                ScaleTimer += dt * Controler.ScaleSpeed;
                 if (ScaleTimer > 1)
                     ScaleTimer -= 2;
                 Highlighted = true;
@@ -130,8 +130,8 @@ namespace WinForms
             float per = (_currentSacle - Scale) / (SelectedScale - Scale);
             Color renderColour;
 
-            buttonArea = new Rectangle(_areaCurrent.X - WinFormControler.BoarderSize, _areaCurrent.Y - WinFormControler.BoarderSize,
-                   _areaCurrent.Width + WinFormControler.BoarderSize * 2, _areaCurrent.Height + WinFormControler.BoarderSize * 2);
+            buttonArea = new Rectangle(_areaCurrent.X - Controler.BoarderSize, _areaCurrent.Y - Controler.BoarderSize,
+                   _areaCurrent.Width + Controler.BoarderSize * 2, _areaCurrent.Height + Controler.BoarderSize * 2);
 
             float diffx = (float)_areaCurrent.Width * _currentSacle - _areaCurrent.Width;
             float diffy = (float)_areaCurrent.Height * _currentSacle - _areaCurrent.Height;
@@ -174,8 +174,8 @@ namespace WinForms
             if (Highlighted)
             {
                 if (!Boarderless)
-                    sb.Draw(bg, new Rectangle(_areaCurrent.X - WinFormControler.BoarderSize, _areaCurrent.Y - WinFormControler.BoarderSize,
-                      _areaCurrent.Width + WinFormControler.BoarderSize * 2, _areaCurrent.Height + WinFormControler.BoarderSize * 2), BgColourSecondry);
+                    sb.Draw(bg, new Rectangle(_areaCurrent.X - Controler.BoarderSize, _areaCurrent.Y - Controler.BoarderSize,
+                      _areaCurrent.Width + Controler.BoarderSize * 2, _areaCurrent.Height + Controler.BoarderSize * 2), BgColourSecondry);
 
             }
             else

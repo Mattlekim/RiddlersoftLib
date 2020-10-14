@@ -14,6 +14,8 @@ namespace Riddlersoft.Graphics.Particals.Emitters
     {
         protected static Random _random = new Random();
 
+        public string Name { get; set; }
+
         public bool Enabled { get; set; } = true;
 
         public List<Partical> Particals;
@@ -27,10 +29,12 @@ namespace Riddlersoft.Graphics.Particals.Emitters
         public FloatRange Initial_Angulor_Velocity { get; set; }
         public FloatRange Initial_Scale { get; set; }
 
-        protected Texture2D ParticalTexture { get; private set; }
+        public Texture2D ParticalTexture { get; private set; }
         protected Vector2 ParticalCenter { get; private set; }
 
-        public int MaxParticles = 10000;
+        public string TexturePath { get; set; } = string.Empty;
+
+        public int MaxParticles = 1000;
 
         public List<Modifyer> Modifyers;
 
@@ -39,11 +43,12 @@ namespace Riddlersoft.Graphics.Particals.Emitters
             Particals.Clear();
         }
 
-        public void SetTexture(Texture2D texture)
+        public void SetTexture(Texture2D texture, string path = "")
         {
             ParticalTexture = texture;
             ParticalCenter = new Vector2(
                 texture.Width * .5f, texture.Height * .5f);
+            TexturePath = path;
         }
 
         public void AddModifyer(Modifyer modifyer)
@@ -65,27 +70,12 @@ namespace Riddlersoft.Graphics.Particals.Emitters
         }
 
         private float triggerTimer = 0;
-        public void Trigger(Point position, int amount)
+        public void Trigger(Point position, int amount, float rotation, float speed)
         {
-            if (!Enabled)
-                return;
-
-            if (_releaseAmount < 1)
-            {
-                triggerTimer += _releaseAmount;
-                if (triggerTimer >= 1)
-                {
-                    triggerTimer -= 1;
-                    if (Particals.Count < MaxParticles)
-                        TriggerParticals(position.ToVector2(), amount);
-                }
-                return;
-            }
-            if (Particals.Count < MaxParticles)
-                TriggerParticals(position.ToVector2(), amount * (int)ReleaseAmount);
+            Trigger(position.ToVector2(), amount, rotation, speed);
         }
 
-        public void Trigger(Vector2 position, int amount)
+        public void Trigger(Vector2 position, int amount, float rotation, float speed)
         {
             if (!Enabled)
                 return;
@@ -97,12 +87,38 @@ namespace Riddlersoft.Graphics.Particals.Emitters
                 {
                     triggerTimer -= 1;
                     if (Particals.Count < MaxParticles)
+                    {
                         TriggerParticals(position, amount);
-                }
+                        foreach (Partical p in Particals)
+                            if (p.Age == 0) //if created this update
+                            {
+                                p.Velocity *= speed; //modify the speed
+                                if (rotation != 0)
+                                {
+                                    p.Velocity = Vector2.Transform(p.Velocity, Matrix.CreateRotationZ(rotation));
+                                    p.Position = Vector2.Transform(p.Position - position, Matrix.CreateRotationZ(rotation)) + position;
+                                }
+                            }
+                    }
+                    }
+
                 return;
             }
             if (Particals.Count < MaxParticles)
+            {
                 TriggerParticals(position, amount * (int)ReleaseAmount);
+
+                foreach (Partical p in Particals)
+                    if (p.Age == 0) //if created this update
+                    {
+                        p.Velocity *= speed; //modify the speed
+                        if (rotation != 0)
+                        {
+                            p.Velocity = Vector2.Transform(p.Velocity, Matrix.CreateRotationZ(rotation));
+                            p.Position = Vector2.Transform(p.Position - position, Matrix.CreateRotationZ(rotation)) + position;
+                        }
+                    }
+            }
         }
 
         /// <summary>
@@ -116,11 +132,12 @@ namespace Riddlersoft.Graphics.Particals.Emitters
             return new Partical()
             {
                 Position = position,
+                Age = 0,
                 Colour = Initial_Colour.GetValue((float)_random.NextDouble()),
                 LifeTime = Initial_LifeTime.GetValue((float)_random.NextDouble()),
                 AngulorRotation = Initial_Angulor_Velocity.GetValue((float)_random.NextDouble()),
                 Rotation = Initial_Rotaiton.GetValue((float)_random.NextDouble()),
-                Velocity = Initial_Velocity.GetValue((float)_random.NextDouble()),
+                Velocity = Initial_Velocity.GetValue((float)_random.NextDouble(), (float)_random.NextDouble()),
                 InititalScale = scale,
                 Scale = scale,
                 Fade = 1,
@@ -137,8 +154,6 @@ namespace Riddlersoft.Graphics.Particals.Emitters
                 p.Rotation += p.AngulorRotation;
                 p.LifeTime -= dt;
                 p.Age += dt;
-
-              
             }
 
             for (int i = Particals.Count - 1; i >= 0; i--)
@@ -146,7 +161,7 @@ namespace Riddlersoft.Graphics.Particals.Emitters
                     Particals.RemoveAt(i);
                 else
                     foreach (Modifyer mod in Modifyers)
-                        mod.Processes(Particals[i], dt);
+                        mod.Prosses(Particals[i], dt);
         }
 
         public void Render(SpriteBatch sb)
@@ -165,6 +180,9 @@ namespace Riddlersoft.Graphics.Particals.Emitters
                 sb.Draw(ParticalTexture, p.Position - camera, null, p.Colour * p.Fade, p.Rotation, ParticalCenter, p.Scale,
                     SpriteEffects.None, 0f);
             }
+
         }
+
+      
     }
 }

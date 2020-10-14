@@ -10,12 +10,16 @@ using Riddlersoft.Core.Input;
 
 namespace WinForms
 {
+    public enum TextBoxInputType { Full, Int, Float}
+
     public class TextBox: Componate
     {
         private bool _selected = false;
 
         public bool MultiLine = false;
         public string Text;
+
+        public Action<object> OnLeave;
 
         public InternalEvent OnKeyPressed;
         /// <summary>
@@ -32,6 +36,9 @@ namespace WinForms
         public override void ClickReset()
         {
             _selected = false;
+            if (Active)
+                if (OnLeave != null)
+                    OnLeave(this);
             base.ClickReset();
         }
 
@@ -40,6 +47,8 @@ namespace WinForms
             if (OnKeyPressed != null)
                 OnKeyPressed(this);
         }
+
+        public TextBoxInputType InputType = TextBoxInputType.Full;
 
         protected override void Update(float dt)
         {
@@ -60,6 +69,24 @@ namespace WinForms
                         if (c == '\n' && !MultiLine) //if we are not multiline make the return key exit the textbox
                             _selected = false;
                         else
+                            if (InputType != TextBoxInputType.Full)
+                        {
+                            if (Text.Length == 0)
+                                if (c == '-')
+                                    Text += c;
+
+                            for (int i =0;i <=9; i++)
+                                if (c == i.ToString()[0])
+                                {
+                                    Text += c;
+                                    break;
+                                }
+                            if (InputType == TextBoxInputType.Float)
+                            if (c == '.')
+                                Text += c;
+
+                        }
+                        else
                             Text += c;
                     }
                     else
@@ -78,10 +105,13 @@ namespace WinForms
                 if (_flasher > 1)
                     _flasher -= 2;
 
+                if (!_selected)
+                    if (OnLeave != null)
+                        OnLeave(this);
 
                 KeyboardAPI.DisableXnaInputThisUpdate(); //disable xna style input
             }
-         
+
         }
 
         public override bool OnLeftMouseClick(Point p)
@@ -93,11 +123,11 @@ namespace WinForms
         private float _flasher = 0;
         protected override void Render(ref SpriteBatch sb)
         {
-                sb.Draw(bg, _areaCurrent, Color.White * WinFormControler.DefaultFade);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, 2), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, 2, _areaCurrent.Height), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y + _areaCurrent.Height - 2, _areaCurrent.Width, 2), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X + _areaCurrent.Width - 2, _areaCurrent.Y, 2, _areaCurrent.Height), WinFormControler.SecondryBG);
+                sb.Draw(bg, _areaCurrent, Color.White * Controler.DefaultFade);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, 2), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, 2, _areaCurrent.Height), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y + _areaCurrent.Height - 2, _areaCurrent.Width, 2), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X + _areaCurrent.Width - 2, _areaCurrent.Y, 2, _areaCurrent.Height), Controler.SecondryBG);
 
             if (Text != null) //if text is not null
             {
@@ -111,9 +141,9 @@ namespace WinForms
                 if (valid)
                 {
                    
-                    sb.DrawString(Font, Text, new Vector2(_areaCurrent.X + 10, _areaCurrent.Y), TextColourPrimary, 0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
+                    sb.DrawString(Font, Text, new Vector2(_areaCurrent.X + 2, _areaCurrent.Y), TextColourPrimary, 0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                     if (_selected)
-                        sb.DrawString(Font, ":", new Vector2(_areaCurrent.X + 10 + Font.MeasureString(Text).X, _areaCurrent.Y), TextColourPrimary * (_flasher * _flasher),
+                        sb.DrawString(Font, ":", new Vector2(_areaCurrent.X + 2 + Font.MeasureString(Text).X, _areaCurrent.Y), TextColourPrimary * (_flasher * _flasher),
                            0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                 }
             }

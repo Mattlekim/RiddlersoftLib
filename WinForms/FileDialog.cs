@@ -36,7 +36,7 @@ namespace WinForms
 
         private string _selectedFile = null;
 
-        public List<string> AllowedFileExtentions = new List<string>();
+        public List<string> AllowedFileExtentions = new List<string>() { "*.*" };
 
         /// <summary>
         /// this even first when the users clicks on a file
@@ -109,7 +109,7 @@ namespace WinForms
 
         private void Bnt_On_Ok_Clicked(object sender, Point p)
         {
-            TextBox tb = (TextBox)WinFormControler.FindComponateById("txtfile");
+            TextBox tb = (TextBox)this.FindComponateById("txtfile");
             if (_selectedFile == null || _selectedFile == string.Empty)
                 if (tb.Text.Length == 0)
                     return;
@@ -121,7 +121,7 @@ namespace WinForms
                 //now make sure that the file exists
                 if (!File.Exists(_selectedFile)) 
                 {
-                    WinFormControler.MessageBox.ShowErrorDialog("File Not Found", "The file does not exist");
+                    Controler.MessageBox.ShowErrorDialog("File Not Found", "The file does not exist");
                     return; //exit because file does not exits
                 }
             }
@@ -138,8 +138,8 @@ namespace WinForms
 
         private void FileList_OnItemClicked(ListBox.ListBoxItem item, int selection)
         {
-            TextBox tb = (TextBox)WinFormControler.FindComponateById("txtfile");
-            Button bntOk = (Button)WinFormControler.FindComponateById("ok");
+            TextBox tb = (TextBox)this.FindComponateById("txtfile");
+            Button bntOk = (Button)this.FindComponateById("ok");
 
 
             if (_fileSystemEntrys[selection].Name == "..\\") //if go up one directory
@@ -214,11 +214,14 @@ namespace WinForms
                 else
                 {
                     foreach (string ext in AllowedFileExtentions)
-                        if (str.Contains(ext))
+                    {
+                       
+                        if (str.Contains(ext.Replace("*", "")))
                         {
                             add = true;
                             break;
                         }
+                    }
                 }
                 if (add)
                     _fileSystemEntrys.Add(new FileSystem(FileSystemType.File, name, str));
@@ -320,6 +323,8 @@ namespace WinForms
             else
             {
                 DirectoryInfo parentInfo = Directory.GetParent(CurrentDirectory);
+                if (CurrentDirectory == ".\\")
+                    CurrentDirectory = string.Empty;
                 BuildDirectoryListing(parentInfo.FullName + CurrentDirectory);
             }
         }
@@ -332,7 +337,7 @@ namespace WinForms
             if (currentFile == null)
                 currentFile = string.Empty;
 
-            TextBox tb = (TextBox)WinFormControler.FindComponateById("txtfile");
+            TextBox tb = (TextBox)this.FindComponateById("txtfile");
             tb.Text = currentFile;
             tb.Visible = true;
 
@@ -355,7 +360,7 @@ namespace WinForms
             if (currentFile == null)
                 currentFile = string.Empty;
 
-            TextBox tb = (TextBox)WinFormControler.FindComponateById("txtfile");
+            TextBox tb = (TextBox)this.FindComponateById("txtfile");
             tb.Visible = false;
             tb.Active = false;
             _type = FileDialogType.Picker;

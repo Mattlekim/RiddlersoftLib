@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riddlersoft.Core.Xml;
 using Riddlersoft.Graphics.Particals.Emitters;
 
 namespace Riddlersoft.Graphics.Particals.Modifyers
@@ -44,7 +45,7 @@ namespace Riddlersoft.Graphics.Particals.Modifyers
             DampaningAmount = amount;
         }
 
-        public override void Processes(Partical input, float dt)
+        protected override void _prosses(Partical input, float dt)
         {
             if (DampenVelocity)
                 input.Velocity *= _dampaningMultiplyer;
@@ -52,6 +53,21 @@ namespace Riddlersoft.Graphics.Particals.Modifyers
             if (DampenAngulorVelocity)
                 input.AngulorRotation *= _angulorDampaningMultiplyer;
 
+        }
+
+        public override void WriteToFile(CustomXmlWriter writer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ReadFromFile(CustomXmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CustomModifyer _create()
+        {
+            throw new NotImplementedException();
         }
     }
 }

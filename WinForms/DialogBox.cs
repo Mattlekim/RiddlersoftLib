@@ -28,9 +28,9 @@ namespace WinForms
         private string _optionSelected = null;
         public string Description { get { return wlText.Text; } set { wlText.Text = value; } }
 
-        public DialogBox(Action<object> sender, string title, string description, List<string> buttons, float timeout) : base(new Rectangle(30, 30, 40, 40), null)
+        public DialogBox(Action<object> sender, string title, string description, List<string> buttons, float timeout) : base(new Rectangle(300, 300, 400, 400), null)
         {
-            Units = MesurementUnit.Percentage;
+            Units = MesurementUnit.Px;
             Movable = false;
             _sender = sender;
             Componates.Clear();//remove any old compaontas

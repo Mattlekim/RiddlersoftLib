@@ -16,13 +16,13 @@ namespace Riddlersoft.Graphics.Effects
 {
     public class EletricityEffect
     {
-        private const float SparkFrequency = .05f;
+        private const float SparkFrequency = .04f;
         private const int NumberSparkPoints = 5;
         private const float SparkPointDeviation = .5f;
 
-        private const float MaxAirSparkLenght = 80;
-        private const int NumberOfAirSparks = 3;
-        public const float SparkGap = 80 * 80;
+        public const float MaxAirSparkLenght = 80;
+        public const int NumberOfAirSparks = 3;
+        public const float SparkGap = 80;
 
         private List<Spark> _sparks = new List<Spark>();
 
@@ -31,6 +31,7 @@ namespace Riddlersoft.Graphics.Effects
         private float _sparkTimer = 0;
         private Texture2D _sprite;
         private Texture2D _spriteGlow;
+        private Vector2 _spriteGlowCenter;
 
         public Color Colour = new Color(188, 0, 153);
 
@@ -54,69 +55,84 @@ namespace Riddlersoft.Graphics.Effects
            
             Poligons.Setup(game);
             _sprite = game.Content.Load<Texture2D>("sparkline");
-            _spriteGlow = game.Content.Load<Texture2D>("sparklineglow");
+            _spriteGlow = game.Content.Load<Texture2D>("imgs\\background\\circle_light");
+            _spriteGlowCenter = new Vector2(_spriteGlow.Width * .5f, _spriteGlow.Height * .5f);
         }
         private Random _rd = new Random();
+
+
+        private Conduit _current, _target;
         private void GenerateSparks()
         {
             Vector2 vec;
             float dir;
             float lenght;
-            for (int sources = 0; sources < _powerSource.Count; sources++)
-            {
-                _powerSource[sources].RecivedPower = false;
-               
-            }
+
 
             for (int sources = 0; sources < _powerSource.Count; sources++)
-                if (_powerSource[sources].Active)
+            {
+                _current = _powerSource[sources];
+
+                if (_current.Powered)
+                    _current.GlowIntencity = (float)_rd.NextDouble() * 2f + 1f;
+
+                if (_current.Active)
                 {
-                    _powerSource[sources].Active = false;
-                    if (_powerSource[sources].Powered && !_powerSource[sources].RecivedPower)
+                    
+                    _current.Active = false;
+                    if (_current.Powered || _current.HaveRecivedPower)
                     {
 
                         bool connected = false;
-                        for (int target = 0; target < _powerSource.Count; target++)
-
-                            if (sources != target)
+                        if (!_current.HaveRecivedPower)
+                        {
+                            for (int target = 0; target < _powerSource.Count; target++)
                             {
-
-                                if (Vector2.DistanceSquared(_powerSource[sources].Position, _powerSource[target].Position) <= _powerSource[sources].SparkGap + (_rd.NextDouble() * 20))
+                                if (sources != target)
                                 {
-                                    if (!_powerSource[target].Powered)
-                                        _powerSource[target].RecivedPower = true;
-                                    // for (int pass = 0; pass < 2; pass++)
+                                    _target = _powerSource[target];
+                                    if (MathHelper.Distance(_current.Position.X, _target.Position.X) <= _current.SparkGap * _target.Atractivness && MathHelper.Distance(_current.Position.Y, _target.Position.Y) <= _current.SparkGap * _target.Atractivness)
                                     {
-                                        Vector2 v = _powerSource[sources].Position;
-                                        for (int i = 0; i < NumberSparkPoints - 1; i++)
+
+                                       
+                                        if (!_target.Powered)
                                         {
-                                            vec = _powerSource[target].Position - _powerSource[sources].Position;
-                                            dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
-                                            lenght = vec.Length() / NumberSparkPoints;
-                                            _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
-                                            Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
-                                            //_sparks.Add(v + newV);
-                                            v += newV;
-
+                                            _target.HaveRecivedPower = true;
+                                            _target.PowerReciveAmount = _current.AmountOfPower;
                                         }
-                                        //_sparks.Add(v);
-                                        vec = _powerSource[target].Position - v;
-                                        dir = (float)Math.Atan2(vec.Y, vec.X);
-                                        lenght = vec.Length();
-                                        _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
+
+                                        if (!_current.SparkedThisUpdate)
+                                        {
+                                            Vector2 v = _current.Position;
+                                            for (int i = 0; i < NumberSparkPoints - 1; i++)
+                                            {
+                                                vec = _target.Position - _current.Position;
+                                                dir = (float)Math.Atan2(vec.Y, vec.X) + SparkPointDeviation * ((float)_rd.NextDouble() * 2 - 1);
+                                                lenght = vec.Length() / NumberSparkPoints;
+                                                _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
+                                                Vector2 newV = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir));
+                                                v += newV;
+                                            }
+                                            vec = _target.Position - v;
+                                            dir = (float)Math.Atan2(vec.Y, vec.X);
+                                            lenght = vec.Length();
+                                            _sparks.Add(new Spark() { Start = v, Direction = dir, Lenght = lenght, Sacle = 1f, });
+                                            _target.SparkedThisUpdate = true;
+                                        }
+                                        
+                                        connected = true;
                                     }
-                                    connected = true;
                                 }
-
-
                             }
-                        if (!connected || _powerSource[sources].ForceAirSparks) //if we are not connected we want to create random sparks through the air
+                        }
+
+                        if (!connected || _target.ForceAirSparks) //if we are not connected we want to create random sparks through the air
                         {
 
-                            for (int p = 0; p < NumberOfAirSparks; p++)
+                            for (int p = 0; p < _current.NumberOfAirSparks; p++)
                             {
-                                Vector2 v = _powerSource[sources].Position;
-                                lenght = (float)_rd.NextDouble() * MaxAirSparkLenght;
+                                Vector2 v = _current.Position;
+                                lenght = (float)_rd.NextDouble() * _current.MaxAirSparkLenght;
                                 dir = (float)_rd.NextDouble() * MathHelper.TwoPi;
                                 Vector2 t = Vector2.Transform(new Vector2(lenght, 0), Matrix.CreateRotationZ(dir)) + v;
                                 for (int i = 0; i < NumberSparkPoints - 1; i++)
@@ -134,9 +150,20 @@ namespace Riddlersoft.Graphics.Effects
                         }
                     }
                 }
+            }
+
+
+
+        }
+
+        public void PostUpdate()
+        {
             for (int sources = 0; sources < _powerSource.Count; sources++)
             {
-                _powerSource[sources].ForceAirSparks = false;
+                _current = _powerSource[sources];
+                _current.HaveRecivedPower = false;
+                _current.PowerReciveAmount = 0;
+                _current.SparkedThisUpdate = false;
             }
         }
 
@@ -156,15 +183,13 @@ namespace Riddlersoft.Graphics.Effects
         public void DrawLightMap(SpriteBatch sb, Vector2 camera = new Vector2())
         {
 
-
-
-            for (int i = 0; i < _sparks.Count; i++)
-            {
-                sb.Draw(_sprite, _sparks[i].Start - camera, new Rectangle(0, 0, Convert.ToInt32(_sparks[i].Lenght), 20), Colour, _sparks[i].Direction, new Vector2(0, 10), _sparks[i].Sacle * 3f, SpriteEffects.None, 0f);
-                sb.Draw(_spriteGlow, _sparks[i].Start - camera, new Rectangle(0, 0, Convert.ToInt32(_sparks[i].Lenght), 20), Colour, _sparks[i].Direction, new Vector2(0, 10), _sparks[i].Sacle * 3f, SpriteEffects.None, 0f);
-            }
-            sb.End();
-
+            foreach (Conduit c in _powerSource)
+                if (c.Powered || c.HaveRecivedPower)
+                    sb.Draw(_spriteGlow, c.Position - camera, null, Colour * .8f, 0f, _spriteGlowCenter, c.GlowIntencity,SpriteEffects.None, 0f);
+        }
+        /*
+        public void DrawLightMapPoligons(SpriteBatch sb, Vector2 camera = new Vector2())
+        {
             Poligons.Begin();
 
             for (int i = 0; i < _sparks.Count; i++)
@@ -173,32 +198,21 @@ namespace Riddlersoft.Graphics.Effects
                 Poligons.DrawLine(_sparks[i].Start - camera,
                   _sparks[i].Start - camera + Vector2.Transform(new Vector2(_sparks[i].Lenght, 0), Matrix.CreateRotationZ(_sparks[i].Direction)), Color.White);
             }
-
-            sb.Begin();
+        
         }
-
+        */
+        
         public void Draw(SpriteBatch sb, Vector2 camera = new Vector2())
         {
-           
-
-           
             for (int i = 0; i < _sparks.Count; i++)
             {
-                sb.Draw(_sprite, _sparks[i].Start - camera, new Rectangle(0, 0, Convert.ToInt32(_sparks[i].Lenght), 20), Colour, _sparks[i].Direction, new Vector2(0, 10), _sparks[i].Sacle, SpriteEffects.None, 0f);
-                sb.Draw(_spriteGlow, _sparks[i].Start - camera, new Rectangle(0, 0, Convert.ToInt32(_sparks[i].Lenght), 20), Colour, _sparks[i].Direction, new Vector2(0, 10), _sparks[i].Sacle, SpriteEffects.None, 0f);
+                sb.Draw(_sprite, _sparks[i].Start - camera, new Rectangle(0, 0, Convert.ToInt32(_sparks[i].Lenght), 20), Color.White, _sparks[i].Direction, new Vector2(0, 10), _sparks[i].Sacle, SpriteEffects.None, 0f);
+              
             }
-                sb.End();
+    
 
-            Poligons.Begin();
-
-            for (int i = 0; i < _sparks.Count; i++)
-            {
-
-                Poligons.DrawLine(_sparks[i].Start - camera,
-                  _sparks[i].Start - camera + Vector2.Transform(new Vector2(_sparks[i].Lenght, 0), Matrix.CreateRotationZ(_sparks[i].Direction)), Color.White);
-            }
-
-            sb.Begin();
+         
         }
+        
     }
 }

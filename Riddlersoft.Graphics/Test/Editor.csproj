@@ -10,7 +10,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test</RootNamespace>
-    <AssemblyName>Test</AssemblyName>
+    <AssemblyName>VAC Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -60,6 +60,14 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{10867c37-8a7f-4fb7-a6bf-94c6987cb9e8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParticalEditor\ParticalEditorLib.csproj">
+      <Project>{98e349a9-c83e-4c47-b8c2-662f1a058c2e}</Project>
+      <Name>ParticalEditorLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Riddlersoft.Graphics\Riddlersoft.Graphics.csproj">
       <Project>{11e8ce57-90c1-4631-a8b2-83b4a3d71c2c}</Project>
       <Name>Riddlersoft.Graphics</Name>

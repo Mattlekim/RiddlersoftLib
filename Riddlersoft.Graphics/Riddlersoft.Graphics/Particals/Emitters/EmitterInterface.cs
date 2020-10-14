@@ -14,14 +14,14 @@ namespace Riddlersoft.Graphics.Particals.Emitters
         /// the amount of particals to trigger
         /// </summary>
         /// <param name="amount"></param>
-        void Trigger(Point position, int amount);
+        void Trigger(Point position, int amount, float rotation, float speed);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="position"></param>
         /// <param name="amount"></param>
-        void Trigger(Vector2 position, int amount);
+        void Trigger(Vector2 position, int amount, float rotation, float speed);
         /// <summary>
         /// updates the emitter
         /// </summary>

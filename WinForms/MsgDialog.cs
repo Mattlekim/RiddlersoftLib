@@ -27,9 +27,9 @@ namespace WinForms
         private Action<object, Point> _responce;
 
         public MsgDialog(Componate parentcomponate) :
-            base(new Rectangle(35, 35, 30, 30), parentcomponate)
+            base(new Rectangle(305, 305, 300, 300), parentcomponate)
         {
-            Units = MesurementUnit.Percentage;
+            Units = MesurementUnit.Px;
             Title = "";
             Active = false;
             _visible = false;

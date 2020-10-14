@@ -11,12 +11,22 @@ namespace Riddlersoft.Graphics.Effects
     public class Conduit
     {
         public bool Active;
-
+        public bool SparkedThisUpdate;
         public bool Powered;
         public Vector2 Position;
-        public bool RecivedPower;
+        public bool HaveRecivedPower;
         public bool ForceAirSparks;
 
+        public float PowerReciveAmount = 0;
+        public float AmountOfPower = 1;
+
+        public float NumberOfAirSparks = EletricityEffect.NumberOfAirSparks;
+        public float MaxAirSparkLenght = EletricityEffect.MaxAirSparkLenght;
+
         public float SparkGap;
+
+        public float GlowIntencity = 1f;
+
+        public float Atractivness = 1f;
     }
 }

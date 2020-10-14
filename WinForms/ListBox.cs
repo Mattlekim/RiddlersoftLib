@@ -239,10 +239,11 @@ namespace WinForms
             int starti = (int)(_scrollAmount / 40);
             Point p = new Point((int)MouseTouch.Position.X, (int)MouseTouch.Position.Y);
 
-            if (_areaCurrent.Contains(p))
-            {
-                GetClickedItem(p);
-            }
+            if (!Collapsible)
+                if (_areaCurrent.Contains(p))
+                {
+                    GetClickedItem(p);
+                }
 
             if (_selectedItem != -1 && _hilightedItem == -1) //if there is an item select and currently no item hilighted
             {
@@ -347,23 +348,25 @@ namespace WinForms
             {
                 
                 tmpx = Area.X;
-                sb.Draw(bg, new Rectangle(Area.X, Area.Y - (int)_scrollAmount, Area.Width, _spacing), WinFormControler.SecondryBG);
+               // sb.Draw(bg, new Rectangle(Area.X, Area.Y - (int)_scrollAmount, Area.Width, _spacing), Controler.SecondryBG);
                 if (SelectedItem == -1)
                 {
                     if (Items.Count == 0)
-                        sb.DrawString(Font, "No Items Avalible", new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), WinFormControler.PrimaryText,
+                        sb.DrawString(Font, "No Items Avalible", new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                     else
-                        sb.DrawString(Font, "Please Select An Item", new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), WinFormControler.PrimaryText,
+                        sb.DrawString(Font, "Please Select An Item", new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                 }
                 else
-                    for (int c = 0; c < _items[SelectedItem].Contents.Count && c < 1; c++)
-                    {
-                        sb.DrawString(Font, _items[SelectedItem].Contents[c].Text, new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), WinFormControler.PrimaryText,
-                            0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
-                        tmpx += _items[SelectedItem].Contents[c].Width;
-                    }
+                    
+
+                  for (int c = 0; c < _items[SelectedItem].Contents.Count && c < 1; c++)
+                  {
+                      sb.DrawString(Font, _items[SelectedItem].Contents[c].Text, new Vector2(tmpx + 4, Area.Y + 4 - (int)_scrollAmount), Controler.SecondryText,
+                          0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
+                      tmpx += _items[SelectedItem].Contents[c].Width;
+                  }
 
                 return;
             }
@@ -384,7 +387,7 @@ namespace WinForms
                 return;
 
             for (int c = 0; c < _items[_selectedItem].Contents.Count && c < 1; c++)
-                sb.DrawString(Font, _items[SelectedItem].Contents[c].Text, new Vector2(tmpx, _areaOriginal.Y + 4), WinFormControler.PrimaryText,
+                sb.DrawString(Font, _items[SelectedItem].Contents[c].Text, new Vector2(tmpx, _areaOriginal.Y + 4), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
 
             if (_isOpen) //if we want to select an item from the list
@@ -395,8 +398,8 @@ namespace WinForms
                     for (int c = 0; c < _items[i].Contents.Count && c < 1; c++)
                     {
                         sb.Draw(bg, new Rectangle(_areaOriginal.X, Convert.ToInt32(_areaOriginal.Y + (i + 1) * (float)_spacing * MasterScale) - (int)_scrollAmount, _areaOriginal.Width, Convert.ToInt32((float)_spacing * MasterScale)),
-                            new Color(WinFormControler.SecondryBG.R, WinFormControler.SecondryBG.G, WinFormControler.SecondryBG.B));
-                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx, _areaOriginal.Y + 4 + (i + 1) * _spacing * MasterScale - (int)_scrollAmount), WinFormControler.PrimaryText,
+                            new Color(Controler.SecondryBG.R, Controler.SecondryBG.G, Controler.SecondryBG.B));
+                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx, _areaOriginal.Y + 4 + (i + 1) * _spacing * MasterScale - (int)_scrollAmount), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                         tmpx += _items[i].Contents[c].Width;
                     }
@@ -416,15 +419,15 @@ namespace WinForms
             bool viewportSet = false;
             if (viewHeight > Area.Height) //if it is to big
             {
-                drawY = 0;
+             /*   drawY = 0;
                 drawX = 0;
                 _oldView = Device.Viewport;
                 viewportSet = true;
                 sb.End();
         
                 Device.Viewport = new Viewport(ScreenMath.Resize(Area)); //set new viewport
-                sb.Begin(SpriteSortMode.Deferred, null,null,null,null,null, WinFormControler.matrix);
-
+                sb.Begin(SpriteSortMode.Deferred, null,null,null,null,null, Controler.matrix);
+                */
                 _isScrolable = true;
             }
             else
@@ -432,7 +435,7 @@ namespace WinForms
 
             int tmpx = drawX;
             int starti = (int)(_scrollAmount / 40f);
-            if (starti < 0)
+            if (starti < 0 && !_isScrolable)
             {
                 return;
             }
@@ -440,12 +443,14 @@ namespace WinForms
             for (int i = starti; i < _items.Count; i++)
             {
                 tmpx = drawX;
+                if (drawY + i * _spacing - (int)_scrollAmount - Area.Height + 80 > Area.Height && _isScrolable)
+                    continue;
                 if (_hilightedItem == i)
                 {
-                    sb.Draw(bg, new Rectangle(drawX, drawY + i * _spacing - (int)_scrollAmount, Area.Width, _spacing), WinFormControler.SecondryBG * .5f);
+                    sb.Draw(bg, new Rectangle(drawX, drawY + i * _spacing - (int)_scrollAmount, Area.Width, _spacing), Controler.SecondryBG * .5f);
                     for (int c = 0; c < _items[i].Contents.Count && c < 1; c++)
                     {
-                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx + 4, drawY - (int)_scrollAmount + 4 + i * _spacing), WinFormControler.PrimaryText,
+                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx + 4, drawY - (int)_scrollAmount + 4 + i * _spacing), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                         tmpx += _items[i].Contents[c].Width;
                     }
@@ -453,10 +458,10 @@ namespace WinForms
                 else
                 if (_selectedItem == i)
                 {
-                    sb.Draw(bg, new Rectangle(drawX, drawY + i * _spacing - (int)_scrollAmount, Area.Width, _spacing), WinFormControler.SecondryBG);
+                    sb.Draw(bg, new Rectangle(drawX, drawY + i * _spacing - (int)_scrollAmount, Area.Width, _spacing), Controler.SecondryBG);
                     for (int c = 0; c < _items[i].Contents.Count && c < 1; c++)
                     {
-                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx + 4, drawY + 4 + i * _spacing - (int)_scrollAmount), WinFormControler.PrimaryText,
+                        sb.DrawString(Font, _items[i].Contents[c].Text, new Vector2(tmpx + 4, drawY + 4 + i * _spacing - (int)_scrollAmount), Controler.PrimaryText,
                             0f, Vector2.Zero, MasterScale, SpriteEffects.None, 0f);
                         tmpx += _items[i].Contents[c].Width;
                     }
@@ -480,14 +485,14 @@ namespace WinForms
 
             if (_isScrolable)
             {
-                sb.Draw(bg, new Rectangle(Area.Width - 16, 0, 16, Area.Height), new Color(BgColourSecondry, 1f));
-                sb.Draw(bg, new Rectangle(Area.Width - 14, 2, 12, Area.Height - 4), new Color(BgColourPrimary, 1f));
+                sb.Draw(bg, new Rectangle(Area.Width - 16 + _parent.Area.X, _parent.Area.Y + 40, 16, Area.Height), new Color(BgColourSecondry, 1f));
+                sb.Draw(bg, new Rectangle(Area.Width - 14 + _parent.Area.X, _parent.Area.Y + 42, 12, Area.Height - 4), new Color(BgColourPrimary, 1f));
 
                 float minper = _areaCurrent.Height / (float)(Items.Count * _spacing);
                 float per = (_scrollAmount + _areaCurrent.Height) / ((float)(Items.Count * _spacing));
                 per -= minper;
                 per *= (1f + minper / 1.1f);
-                sb.Draw(bg, new Rectangle(Area.Width - 12, Convert.ToInt32(Area.Height * per) + 4, 8, 8), new Color(BgColourSecondry, 1f));
+                sb.Draw(bg, new Rectangle(Area.Width - 12 + _parent.Area.X, _parent.Area.Y + Convert.ToInt32(Area.Height * per) + 44, 8, 8), new Color(BgColourSecondry, 1f));
             }
 
             if (viewportSet)
@@ -495,7 +500,7 @@ namespace WinForms
 
                 sb.End();
                 Device.Viewport = _oldView;
-                sb.Begin(SpriteSortMode.Deferred, null, null, null, null, null, WinFormControler.matrix);
+                sb.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Controler.matrix);
             };
         }
 

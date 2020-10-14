@@ -70,3 +70,15 @@
 /processorParam:DebugMode=Auto
 /build:Shaders/SpriteEffect.fx
 
+#begin Shaders/NormalMapLighting.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/NormalMapLighting.fx
+
+#begin Shaders/AlphaMask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/AlphaMask.fx
+

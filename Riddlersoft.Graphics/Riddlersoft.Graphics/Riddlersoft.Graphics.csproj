@@ -48,6 +48,7 @@
     <Compile Include="Effects\EletricityEffect.cs" />
     <Compile Include="Effects\Spark.cs" />
     <Compile Include="Particals\BasicMath.cs" />
+    <Compile Include="Particals\Modifyers\CustomeModifyer.cs" />
     <Compile Include="Particals\Emitters\ConeEmitter.cs" />
     <Compile Include="Particals\Emitters\CircleEmitter.cs" />
     <Compile Include="Particals\Modifyers\KillModifyer.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Particals\Modifyers\LinearGravityModifyer.cs" />
     <Compile Include="Particals\Modifyers\RotatingOsolatingModifyer.cs" />
     <Compile Include="Particals\Modifyers\OsolatingModifyer.cs" />
+    <Compile Include="Particals\Modifyers\RotationVectorModifyer.cs" />
     <Compile Include="Particals\Modifyers\StateColourModifyer.cs" />
     <Compile Include="Particals\Modifyers\LinearColourModifyer.cs" />
     <Compile Include="Particals\Modifyers\StateFadeModifyer.cs" />
@@ -73,7 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenFade.cs" />
     <Compile Include="Shaders\2D\Lighting2D.cs" />
+    <Compile Include="Shaders\2D\AlphaMask.cs" />
     <Compile Include="Shaders\2D\Mask.cs" />
+    <Compile Include="Shaders\2D\NormalMapLighting.cs" />
     <Compile Include="Shaders\2D\Pixalate.cs" />
     <Compile Include="Shaders\2D\Saturation.cs" />
     <Compile Include="Shaders\WaterEffect.cs" />

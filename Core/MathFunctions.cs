@@ -9,6 +9,12 @@ namespace Riddlersoft.Core
 {
     public static class MathFunctions
     {
+
+        public static Rectangle Vector2ToRectangle(Vector2 pos, int size)
+        {
+            return new Rectangle(Convert.ToInt32(pos.X), Convert.ToInt32(pos.Y), size, size);
+        }
+
         /// <summary>
         /// floors the current input
         /// </summary>
@@ -148,6 +154,11 @@ namespace Riddlersoft.Core
                 return new Vector2(p1.X + dx12 * t1, p1.Y + dy12 * t1);
 
             return null;
+        }
+
+        public static Rectangle Shrink(Rectangle source, int amountInPx)
+        {
+            return new Rectangle(source.X + amountInPx, source.Y + amountInPx, source.Width - amountInPx * 2, source.Height - amountInPx * 2);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace WinForms
     /// <summary>
     /// the main windows form controler
     /// </summary>
-    public class WinFormControler
+    public class Controler
     {
         /// <summary>
         /// list of all activated componates
@@ -121,9 +121,9 @@ namespace WinForms
             if (_isIntizalized)
                 throw new Exception("Cannot be intizlized more than once");
             //hook events
-            MouseTouch.OnLeftMouseClick += WinFormControler.OnLeftClick;
+            MouseTouch.OnLeftMouseClick += Controler.OnLeftClick;
             MouseTouch.OnLeftMouseDown += OnLeftButtonDown;
-            MouseTouch.OnRightMouseClick += WinFormControler.OnRightClick;
+            MouseTouch.OnRightMouseClick += Controler.OnRightClick;
 
             _isIntizalized = true;
             ScreenManiger.OnResolutionChange += OnResolutionChange;

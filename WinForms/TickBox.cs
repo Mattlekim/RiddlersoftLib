@@ -50,14 +50,14 @@ namespace WinForms
         protected override void Render(ref SpriteBatch sb)
         {
           
-            sb.Draw(bg, _areaCurrent, Color.White * WinFormControler.DefaultFade);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, 2), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, 2, _areaCurrent.Height), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y + _areaCurrent.Height - 2, _areaCurrent.Width, 2), WinFormControler.SecondryBG);
-            sb.Draw(bg, new Rectangle(_areaCurrent.X + _areaCurrent.Width - 2, _areaCurrent.Y, 2, _areaCurrent.Height), WinFormControler.SecondryBG);
+            sb.Draw(bg, _areaCurrent, Color.White * Controler.DefaultFade);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, 2), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, 2, _areaCurrent.Height), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y + _areaCurrent.Height - 2, _areaCurrent.Width, 2), Controler.SecondryBG);
+            sb.Draw(bg, new Rectangle(_areaCurrent.X + _areaCurrent.Width - 2, _areaCurrent.Y, 2, _areaCurrent.Height), Controler.SecondryBG);
             
             if (Ticked)
-                sb.Draw(bg, new Rectangle(_areaCurrent.X + 8, _areaCurrent.Y + 8, _areaCurrent.Width -16, _areaCurrent.Height-16), Color.Black * WinFormControler.DefaultFade);
+                sb.Draw(bg, new Rectangle(_areaCurrent.X + 8, _areaCurrent.Y + 8, _areaCurrent.Width -16, _areaCurrent.Height-16), Color.Black * Controler.DefaultFade);
 
             if (_textWidth == -1)
                 _textWidth = Font.MeasureString(Text).X;

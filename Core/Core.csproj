@@ -82,6 +82,7 @@
     <Compile Include="Disk\RDirectory.cs" />
     <Compile Include="Disk\RFile.cs" />
     <Compile Include="Disk\RStructor.cs" />
+    <Compile Include="ExtensionMethords.cs" />
     <Compile Include="Generators\NameGenerator.cs" />
     <Compile Include="Generators\ProeduralGenerator.cs" />
     <Compile Include="Input\DragEvent.cs" />

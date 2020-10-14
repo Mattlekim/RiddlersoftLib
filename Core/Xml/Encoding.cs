@@ -96,6 +96,9 @@ namespace Riddlersoft.Core.Xml
 
         public static Rectangle DecodeRectangle(string value)
         {
+            if (value == null)
+                return new Rectangle(0, 0, 0, 0);
+
             Rectangle val = new Rectangle();
             //get x
             int index = value.IndexOf("X:");

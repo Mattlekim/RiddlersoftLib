@@ -12,13 +12,13 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Riddlersoft.Core.Input
 {
-    
+
 
     public class MouseTouch
     {
-        public enum DragStatus { None, DetectedHold, Active}
+        public enum DragStatus { None, DetectedHold, Active }
 
-       
+
 
         private const float ClickDetectionInterval = .2f;
 
@@ -100,7 +100,7 @@ namespace Riddlersoft.Core.Input
         /// <summary>
         /// the amount the mouse wheel has scrolled this turn
         /// </summary>
-        public static int ScrollAmount {  get { return _scrollAmount; } }
+        public static int ScrollAmount { get { return _scrollAmount; } }
 
         /// <summary>
         /// this event fires when the player starts draging the mouse
@@ -115,6 +115,8 @@ namespace Riddlersoft.Core.Input
         /// <param name="end"></param>
         public delegate void _OnDragEnd(Vector2 end, Ray r);
         public static event _OnDragEnd OnDragEnd;
+
+        public static Action<Rectangle> OnDrag;
 
         public static Vector2 LastPosition { get; protected set; }
 
@@ -138,7 +140,7 @@ namespace Riddlersoft.Core.Input
         /// is true if the left mouse button has been clicked
         /// </summary>
         public static bool LButtonClick { get { return _lButtonClick; } }
-        
+
         public static bool LbuttonDown { get; protected set; }
         private static bool _rButtonClick;
         /// <summary>
@@ -149,17 +151,21 @@ namespace Riddlersoft.Core.Input
         public static bool RbuttonDown { get; protected set; }
 
         public static bool RButtonReleased { get; protected set; }
-        
+
 
         public static bool MButtonDown { get; protected set; }
         public static bool MButtonClick { get; protected set; }
         public static bool MButtonRelesed { get; protected set; }
+
+        private static Vector2 _endDragPos = Vector2.Zero;
 
         private static Vector2 _intialDragPos = Vector2.Zero;
         /// <summary>
         /// The start position of the mouse drag
         /// </summary>
         public static Vector2 IntialDragPos { get { return _intialDragPos; } }
+
+        public static Vector2 IntialClickPostion { get; private set; }
 
         private static Vector2 _currentDragPos = Vector2.Zero;
         /// <summary>
@@ -169,18 +175,18 @@ namespace Riddlersoft.Core.Input
 
         public static bool TouchEnabled { get; private set; } = false;
 
-       
+
 
         public static Texture2D CorssHair;
         public static Vector2 CrossHairCenter;
+        public static Texture2D Dot;
 
-       
         public static TouchCollection TouchPoints { get; private set; }
 
         private static DragEvent _drag;
         public static DragEvent Drag { get { return _drag; } }
         private static DragStatus _dragStatus;
-        
+
         public static bool FlickLeft { get; private set; }
         public static bool FlickRight { get; private set; }
         public static bool FlickUp { get; private set; }
@@ -225,6 +231,16 @@ namespace Riddlersoft.Core.Input
 
         private static Vector2 _initalClickPosition;
         private static Vector2 _lastMousePostion;
+
+        public static Vector2 Camera = Vector2.Zero;
+
+        public static bool CanDrag = true;
+
+        public static void ClearDrag()
+        {
+            _dragStatus = DragStatus.None;
+            
+        }
 
         private static void PostUpdate(float dt)
         {
@@ -282,24 +298,42 @@ namespace Riddlersoft.Core.Input
                     OnLeftMouseDown(Position);
 
             if (MouseS.LeftButton == ButtonState.Released && LastMouseS.LeftButton == ButtonState.Pressed)
+            {
                 if (OnLeftMouseRelease != null)
                     OnLeftMouseRelease(Position);
-
-            if (MouseS.LeftButton == ButtonState.Released || _lmouse.LeftButton == ButtonState.Released)
-                _dragStatus = DragStatus.None; //reset the drag as there is no drag
-
-            if (_dragStatus == DragStatus.DetectedHold)
-            {
-                //if (_mouse.Position != _lmouse.Position)
-                    _drag = new DragEvent((_mouse.Position - _lmouse.Position).ToVector2(), _lmouse.Position.ToVector2(), true);
+               
             }
+            if (CanDrag)
+            {
+                if (MouseS.LeftButton == ButtonState.Released || _lmouse.LeftButton == ButtonState.Released)
+                {
+                    if (_dragStatus == DragStatus.DetectedHold) //if active drag
+                    {
+                        if (Vector2.Distance(_intialDragPos, _endDragPos) > DragMinimumMoveThreshold)
+                            if (OnDrag != null)
+                                OnDrag(new Rectangle((int)_intialDragPos.X, (int)_intialDragPos.Y, (int)(_endDragPos.X - _intialDragPos.X), (int)(_endDragPos.Y - _intialDragPos.Y)));
+                    }
 
+                    _dragStatus = DragStatus.None; //reset the drag as there is no drag
+                }
+
+                if (_dragStatus == DragStatus.DetectedHold)
+                {
+                    if (Vector2.Distance(_intialDragPos, LastPosition) > DragMinimumMoveThreshold)
+                        _drag = new DragEvent((_mouse.Position - _lmouse.Position).ToVector2(), _lmouse.Position.ToVector2(), true);
+
+                    _endDragPos = Position + Camera;
+                }
+            }
+            else
+                _dragStatus = DragStatus.None;
 
             //first start left click detection
             if (_mouse.LeftButton == ButtonState.Pressed && _lmouse.LeftButton == ButtonState.Released)
             {
                 _lClickTimer = 0;
                 _initalClickPosition = _position;
+                IntialClickPostion = Position;
             }
 
                 if (_mouse.LeftButton == ButtonState.Pressed && LastMouseS.LeftButton == ButtonState.Pressed)
@@ -331,7 +365,10 @@ namespace Riddlersoft.Core.Input
             {
                 _leftButtonHold = true;
                 if (_dragStatus == DragStatus.None) //if start of drag
+                {
                     _dragStatus = DragStatus.DetectedHold;
+                    _intialDragPos = Position + Camera;
+                }
             }
 
             if (_mouse.RightButton == ButtonState.Pressed && _lmouse.RightButton == ButtonState.Pressed)
@@ -428,6 +465,8 @@ namespace Riddlersoft.Core.Input
             if (_lButtonClick)
             {
                 _mouseRay = gameCamera.GetMouseRay();
+                IntialClickPostion = _position;
+
                 if (OnLeftMouseClick != null)
                     OnLeftMouseClick(_position, _mouseRay);
             }
@@ -479,9 +518,43 @@ namespace Riddlersoft.Core.Input
          //   IsActivated = false;
         }
 
+
+        private static bool DrawMouse = false;
+
+
+        private static void DrawRectangle(SpriteBatch sb, Vector2 start, Vector2 end, int boarder, Color col)
+        {
+            float tmp;
+            if (start.X > end.X)
+            {
+                tmp = start.X;
+                start.X = end.X;
+                end.X = tmp;
+            }
+
+            if (start.Y > end.Y)
+            {
+                tmp = start.Y;
+                start.Y = end.Y;
+                end.Y = tmp;
+            }
+
+            sb.Draw(Dot, new Rectangle((int)start.X, (int)start.Y, (int)(end.X - start.X), boarder), col);
+            sb.Draw(Dot, new Rectangle((int)start.X, (int)end.Y - boarder, (int)(end.X - start.X), boarder), col);
+
+            sb.Draw(Dot, new Rectangle((int)start.X, (int)start.Y, (int)boarder, (int)(end.Y - start.Y)), col);
+            sb.Draw(Dot, new Rectangle((int)end.X - boarder, (int)start.Y, boarder, (int)(end.Y - start.Y)), col);
+        }
+
         public static void Render(ref SpriteBatch sb)
         {
-            sb.Draw(CorssHair, _position - CrossHairCenter, Color.White);
+            if (DrawMouse)
+                sb.Draw(CorssHair, _position - CrossHairCenter, Color.White);
+
+            if (Drag.Active)
+            {
+                DrawRectangle(sb, _intialDragPos - Camera, _endDragPos - Camera, 2, Color.Black);
+            }
         }
 
         public static void SetPos(int x, int y)
@@ -500,6 +573,8 @@ namespace Riddlersoft.Core.Input
             CorssHair = content.Load<Texture2D>("crosshair");
             CrossHairCenter = new Vector2((float)CorssHair.Width * .5f,
                 (float)CorssHair.Height * .5f);
+
+
         }
     }
 }

@@ -18,7 +18,7 @@ namespace WinForms
 
         }
 
-        public Divider(int y, Componate parent) : base(new Rectangle(10, y, parent.Area.Width, 4), parent)
+        public Divider(int y, Componate parent) : base(new Rectangle(10, y, parent.Area.Width - 20, 4), parent)
         {
             Units = parent.Units;
         }

@@ -18,7 +18,7 @@ namespace Riddlersoft.Core.Generators
             _rd = new Random(seed);
 
             List<byte> c = new List<byte>();
-            for (int i = 0; i < 255; i++)
+            for (int i = 0; i <= 255; i++)
                 c.Add((byte)i);
 
             int index = 0;
@@ -37,7 +37,7 @@ namespace Riddlersoft.Core.Generators
             {
                 return false;
             }
-            int i = data & 255;
+            int i = data & 254;
 
             if (per * 255 >= _chances[i])
                 return true;

@@ -104,6 +104,19 @@ namespace Riddlersoft.Core.Input
             _xnaKeyLookupTable.Add(Keys.D9, '9');
             _xnaKeyLookupTable.Add(Keys.OemMinus, '-');
 
+            _xnaKeyLookupTable.Add(Keys.Subtract, '-');
+            _xnaKeyLookupTable.Add(Keys.NumPad0, '0');
+            _xnaKeyLookupTable.Add(Keys.NumPad1, '1');
+            _xnaKeyLookupTable.Add(Keys.NumPad2, '2');
+            _xnaKeyLookupTable.Add(Keys.NumPad3, '3');
+            _xnaKeyLookupTable.Add(Keys.NumPad4, '4');
+            _xnaKeyLookupTable.Add(Keys.NumPad5, '5');
+            _xnaKeyLookupTable.Add(Keys.NumPad6, '6');
+            _xnaKeyLookupTable.Add(Keys.NumPad7, '7');
+            _xnaKeyLookupTable.Add(Keys.NumPad8, '8');
+            _xnaKeyLookupTable.Add(Keys.NumPad9, '9');
+            _xnaKeyLookupTable.Add(Keys.Decimal, '.');
+
             _xnaKeyLookupTable.Add(Keys.Space, ' ');
             _xnaKeyLookupTable.Add(Keys.OemPeriod, '.');
             _xnaKeyLookupTable.Add(Keys.OemComma, ',');

@@ -154,6 +154,7 @@ namespace Riddlersoft.Core.Input
                         Debugger.WriteLine($"Controler {i} is now in controle");
                         return;
                     }
+                _currentState = GamePad.GetState(0);
                 return;
             }
 

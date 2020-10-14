@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 
-using Riddlersoft.Graphics.Particals;
-using Riddlersoft.Graphics.Particals.Emitters;
-using Riddlersoft.Graphics.Particals.Modifyers;
+
 using Riddlersoft.Graphics.Shaders;
 
 using Riddlersoft.Graphics.Shaders._2D;
@@ -15,6 +13,12 @@ using Riddlersoft.Graphics.Effects;
 using Riddlersoft.Graphics.Text;
 
 using System.Collections.Generic;
+
+using Riddlersoft.Graphics.Particals;
+using Riddlersoft.Graphics.Particals.Emitters;
+using Riddlersoft.Graphics.Particals.Modifyers;
+using Riddlersoft.Graphics.Particals.ParticalEditor;
+
 namespace Test
 {
     /// <summary>
@@ -30,17 +34,23 @@ namespace Test
         ParticalEffect pEffect;
         ParticalEffect pEffect2;
 
-        EletricityEffect eEffect;
 
         StringEffect text;
+
+        Editor _editor = new Editor();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            
+
+            _editor = new Editor();
+
+            Components.Add(new Riddlersoft.Core.Input.KeyboardAPI(this));
+            Riddlersoft.Core.Input.KeyboardAPI.EnableCharKeyboard();
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -52,11 +62,15 @@ namespace Test
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
+
+            _editor.SetFont(Content.Load<SpriteFont>("fontvsmall"), Content.Load<SpriteFont>("fontsmall"), Content.Load<SpriteFont>("fontnormal"));
+            _editor.Intialize(this);
+            
             base.Initialize();
 
         }
 
-        Lighting2D lighteffect;
+  
 
         KillModifyer killme;
 
@@ -256,18 +270,14 @@ namespace Test
             pEffect = BuildRobotSmokeEffect(Content); //this loades in an effect
             pEffect2 = BuildGreenSmoke(Content); //this loads in a second effect
 
-            lighteffect = Lighting2D.Load(Content);
-
             _tex = Content.Load<Texture2D>("osr screen");
             _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
             //lighteffect.Parameters["Brightness"].SetValue(0f);
             IsMouseVisible = true;
 
-            eEffect = new EletricityEffect(this);
-
             Riddlersoft.Graphics.Text.Decoders.TextureDecoder.AddTextures(Content.Load<Texture2D>("Star"));
 
-            text = new StringEffect(Content.Load<SpriteFont>("font"), "test string lets [0] see how this well this [0] works.", new Vector2(450,450));
+            text = new StringEffect(Content.Load<SpriteFont>("fontvsmall"), "test string lets [0] see how this well this [0] works.", new Vector2(450,450));
         
             Riddlersoft.Graphics.Text.Modifyers.FadeTransition ft = new Riddlersoft.Graphics.Text.Modifyers.FadeTransition(1f, 1f, .1f, 10);
           //  text.AddModifyer(ft);
@@ -321,27 +331,15 @@ namespace Test
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             timelaps += dt;
 
-            if (ms.LeftButton == ButtonState.Pressed && lms.LeftButton == ButtonState.Released) //this will only trigger once per click
-            {
-                _tex.SetState(Riddlersoft.Graphics.Texture2DSwip.TextureState.Compile);
-                pEffect.Trigger(new Point(ms.Position.X, ms.Position.Y), 1);
-                text.DisableModifyer("loop");
-            }
-
-            if (ms.RightButton == ButtonState.Pressed) //this will keep trigger
-            {
-                pEffect2.Trigger(new Point(ms.Position.X, ms.Position.Y), 1);
-            }
-
-            eEffect.Update(dt);
-            pEffect.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            pEffect2.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            Riddlersoft.Core.Input.MouseTouch.Update();
             //Window.Title = pEffect.Emitters[0].Particals.Count.ToString();
             // TODO: Add your update logic here
             //this.Window.Title = pEffect2.Emitters[0].Particals.Count.ToString();
 
             text.Update(dt);
-            this.Window.Title = text.debug;
+       //     this.Window.Title = text.debug;
+
+            _editor.Update(dt);
             base.Update(gameTime);
         }
         /// <summary>
@@ -350,22 +348,12 @@ namespace Test
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(bg, Vector2.Zero, Color.White);
-            pEffect.Render(spriteBatch);
-           
-            pEffect2.Render(spriteBatch);
-            spriteBatch.End();
+            _editor.Draw(spriteBatch);
 
-           
-            
-            spriteBatch.Begin();
-            _tex.Draw(spriteBatch, new Vector2(200, 200), Color.White);
-            text.Draw(spriteBatch);
             spriteBatch.End();
-
           //  eEffect.Draw(spriteBatch);
             // TODO: Add your drawing code here
 

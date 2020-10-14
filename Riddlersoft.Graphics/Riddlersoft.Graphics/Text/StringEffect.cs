@@ -38,6 +38,8 @@ namespace Riddlersoft.Graphics.Text
 
         public string debug;
 
+        public Action OnEnd;
+
         private float _spacing = 1;
         public float Spacing
         {
@@ -229,13 +231,22 @@ namespace Riddlersoft.Graphics.Text
             foreach (TextModifyer mod in _modifyers)
                 mod.UpdateModifyer(this);
 
+            bool _end = true;
+
             for (int i = 0; i < _lifetimeTriggers.Count; i++)
                 if (!_lifetimeTriggers[i].Used)
+                {
                     if (_lifetimeTriggers[i].Time <= _chars[0].LifeTime)
                     {
                         _lifetimeTriggers[i].Used = true;
                         _lifetimeTriggers[i].Trigger();
                     }
+                    _end = false;
+                }
+
+            if (_end)
+                if (OnEnd != null)
+                    OnEnd();
         }
 
         public void Draw(SpriteBatch sb)

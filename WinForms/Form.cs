@@ -62,7 +62,7 @@ namespace WinForms
             if (HaveCloseButton)
                 CloseButton = new Button(new Rectangle(96, 0, 30, TitleBarHeight), this)
                 {
-                    Img = WinFormControler.XIcon,
+                    Img = Controler.XIcon,
                     CloseParent = true,
                     Boarderless = true,
                     _internalRender = false,
@@ -149,9 +149,9 @@ namespace WinForms
             //sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, TitleBarHeight), Color.Black * .4f);
             if (HaveTitleBar)
             {
-                sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, TitleBarHeight), WinFormControler.SecondryBG);
+                sb.Draw(bg, new Rectangle(_areaCurrent.X, _areaCurrent.Y, _areaCurrent.Width, TitleBarHeight), Controler.SecondryBG);
                 if (Title != null)
-                    sb.DrawString(FontLarge, Title, new Vector2(_areaCurrent.X + 5, _areaCurrent.Y + TitleTextOffset), WinFormControler.PrimaryText);
+                    sb.DrawString(FontLarge, Title, new Vector2(_areaCurrent.X + 5, _areaCurrent.Y + TitleTextOffset), Controler.PrimaryText);
 
                 // sb.Draw(bg, new Rectangle(_areaCurrent.X + _areaCurrent.Width - 20, _areaCurrent.Y, 20, TitleBarHeight), Color.Black * .4f);
                 // sb.DrawString(Fonts.Small, "X", new Vector2(_areaCurrent.X + _areaCurrent.Width, _areaCurrent.Y), Color.Black, 0f, new Vector2(Fonts.Small.MeasureString("X").X, 0), 1, SpriteEffects.None, 0f);

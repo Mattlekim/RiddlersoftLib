@@ -33,10 +33,14 @@ namespace Riddlersoft.Graphics.Effects
         public static void Begin()
         {
             _effect.CurrentTechnique.Passes[0].Apply();
+            MinPoint = null;
         }
 
         public static void DrawLine(Riddlersoft.Core.Line line, Color col)
         {
+            _effect.TextureEnabled = false;
+            _effect.VertexColorEnabled = true;
+            _effect.CurrentTechnique.Passes[0].Apply();
             VertexPositionColor[] verts = new VertexPositionColor[]
             {
                 new VertexPositionColor() { Position = new Vector3(line.Start, 0), Color =  col},
@@ -47,6 +51,8 @@ namespace Riddlersoft.Graphics.Effects
 
         public static void DrawLine(Vector2 start, Vector2 end, Color col)
         {
+            _effect.TextureEnabled = false;
+            _effect.CurrentTechnique.Passes[0].Apply();
             VertexPositionColor[] verts = new VertexPositionColor[]
             {
                 new VertexPositionColor() { Position = new Vector3(start, 0), Color =  col},
@@ -55,8 +61,74 @@ namespace Riddlersoft.Graphics.Effects
             _game.GraphicsDevice.DrawUserPrimitives(PrimitiveType.LineList, verts, 0, 1);
         }
 
+        private static float Min(float a, float b, float c)
+        {
+            if (a <= b && a <= c)
+                return a;
+
+            if (b <= a && b <= c)
+                return b;
+
+            return c;
+        }
+
+        private static float Max(float a, float b, float c)
+        {
+            if (a > b && a > c)
+                return a;
+
+            if (b > a && b > c)
+                return b;
+
+            return c;
+        }
+
+        private static float _scale;
+        private static Vector2 _min;
+        public static Vector2 CalculateTextureCoordinate(Vector2 pos, Vector2 origin, float width, float heigh)
+        {
+            pos.X = pos.X - _min.X + origin.X * _scale;
+            pos.Y = pos.Y - _min.Y + origin.Y * _scale;
+
+            pos.X = pos.X / (width * _scale);
+            pos.Y = pos.Y / (heigh * _scale);
+            return pos;
+        }
+
+        public static Vector2? MinPoint;
+
+        public static void DrawTriangle(Vector2 p1, Vector2 p2, Vector2 p3, Color col, Texture2D texture, Vector2 origin, float scale)
+        {
+            _effect.TextureEnabled = true;
+            _effect.Texture = texture;
+            _effect.CurrentTechnique.Passes[0].Apply();
+            _scale = scale;
+
+            if (MinPoint == null)
+                _min = new Vector2(Min(p1.X, p2.X, p3.X), Min(p1.Y, p2.Y, p3.Y));
+            else
+                _min = MinPoint.Value;
+
+            float width = texture.Width;
+            float heigh = texture.Height;
+
+            //_effect.CurrentTechnique.Passes[0].Apply();
+            VertexPositionColorTexture[] verts = new VertexPositionColorTexture[]
+            {
+                new VertexPositionColorTexture() { Position = new Vector3(p1, 0), Color =  col, TextureCoordinate = CalculateTextureCoordinate(p1, origin, width, heigh)},
+                new VertexPositionColorTexture() { Position = new Vector3(p2, 0), Color =  col, TextureCoordinate = CalculateTextureCoordinate(p2, origin, width, heigh)},
+                new VertexPositionColorTexture() { Position = new Vector3(p3, 0), Color =  col, TextureCoordinate = CalculateTextureCoordinate(p3, origin, width, heigh)},
+            };
+            _game.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, verts, 0, 1);
+        }
+
+
+
         public static void DrawTriangle(Vector2 p1, Vector2 p2, Vector2 p3, Color col)
         {
+            _effect.TextureEnabled = false;
+            _effect.CurrentTechnique.Passes[0].Apply();
+            //_effect.Texture = null;
             VertexPositionColor[] verts = new VertexPositionColor[]
             {
                 new VertexPositionColor() { Position = new Vector3(p1, 0), Color =  col},
