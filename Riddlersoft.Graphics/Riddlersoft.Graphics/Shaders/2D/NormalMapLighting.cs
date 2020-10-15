@@ -82,9 +82,29 @@ namespace Riddlersoft.Graphics.Shaders._2D
             }
         }
 
+        
 
+        private bool _renderNormalLightingOnly = false;
 
+        public bool RenderNormalLightingOnly
+        {
+            get
+            {
+                if (_renderNormalLightingOnly)
+                return true;
+                return false;
+            }
 
+            set
+            {
+                 _renderNormalLightingOnly = value;
+
+                if (_renderNormalLightingOnly)
+                    Parameters["RenderNormalLightingOnly"].SetValue(1);
+                else
+                    Parameters["RenderNormalLightingOnly"].SetValue(0);
+            }
+        }
         private Texture2D _lightMap;
 
         public Texture2D LightMap
