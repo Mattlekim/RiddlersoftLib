@@ -125,6 +125,26 @@ namespace Riddlersoft.Graphics.Shaders._2D
             }
         }
 
+        private Texture2D _emmisionsMap;
+
+        public Texture2D EmmisionsMap
+        {
+            get { return _emmisionsMap; }
+            set
+            {
+                _texture = value;
+
+                //   GraphicsDevice.Textures[1] = value;
+                // return;
+                EffectParameter tex = this.Parameters["EmmisionsMap"];
+                if (tex == null)
+                    tex = this.Parameters["EmmisionsMapSampler"];
+                tex.SetValue(value);
+
+                //Parameters["TextureLight"].SetValue(value);
+            }
+        }
+
         private Texture2D _lightDirectionalMap;
 
         public Texture2D LightDirectionalMap

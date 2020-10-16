@@ -4,6 +4,7 @@ DECLARE_TEXTURE(Texture, 0);
 DECLARE_TEXTURE(NormalMap, 1);
 DECLARE_TEXTURE(LightDirectionMap, 2);
 DECLARE_TEXTURE(LightMap, 3);
+DECLARE_TEXTURE(EmmisionsMap, 4);
 
 //float3 LightDirection =  float3(1,0,0);
 //float4 LightColor = float4(1,1,1, 1);
@@ -19,7 +20,9 @@ int RenderNormalLightingOnly = 0;
 float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 {
 	float4 lightData = SAMPLE_TEXTURE(LightMap, texCoord); //sample the light map
-	lightData.a = 1;
+
+	float4 emissionsLight = SAMPLE_TEXTURE(EmmisionsMap, texCoord); //sample the light map
+	//lightData.a = 1;
 	lightData *= AmbientLightMultiplyer;
 	float4 lightDirectionData = SAMPLE_TEXTURE(LightDirectionMap, texCoord); //sampel the direction light data
 	//green is x direction 
@@ -72,7 +75,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 	float lightAmount = max(dot(normal.xyz, LightDirection), 0);
 	//Calculate the lighting value to return and multiplyer by the game texture
 	//partial my code partial stolen
-	float norm = ((lightAmount * lbc * LightingMultiplyer * lightDirectionData.b));
+	float norm = ((lightAmount * lbc * LightingMultiplyer));
 	
 	if (RenderNormalLightingOnly == 1)
 	{
@@ -84,7 +87,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 		//return 1;
 	//return tex * (/*NormalBlueChannel * lightDirectionData.b*/ /*+ AmbientColor * AmbientLightMultiplyer + norm **/ lightData);
 
-	return tex * (AmbientColor * AmbientLightMultiplyer + norm * lightData);
+	return tex * max(emissionsLight, (AmbientColor * AmbientLightMultiplyer + norm * lightData));
 	
 //	return tex * (/*NormalBlueChannel * lightDirectionData.b*/ +ambientColor * AmbientLightMultiplyer * (1 - NormalBlueChannel * .3f) + norm);
 	//return tex * (NormalBlueChannel * lightDirectionData.b + ambientColor * AmbientLightMultiplyer * (lightAmount * lbc * LightingMultiplyer * lightDirectionData.b));
