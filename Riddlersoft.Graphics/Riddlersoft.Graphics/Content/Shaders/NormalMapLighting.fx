@@ -35,7 +35,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 	//we will use the blue chanel to depit light strenght
 
 	//now we want to take the max light value from ether the light mask or the minimul light within ambientColor
-	float4 ambientColor = max(lightData, AmbientColor);
+	//float4 ambientColor = max(lightData, AmbientColor);
 
 	//move to lbc for calculations of normal
 	float4 lbc = lightData;
@@ -79,10 +79,12 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 		return tex * norm;
 	}
 	
-	return tex *(ambientColor * norm);
+	//return tex *(ambientColor * norm);
 	//if (norm < 0)
 		//return 1;
-	return tex * (/*NormalBlueChannel * lightDirectionData.b*/ + ambientColor * AmbientLightMultiplyer + norm);
+	//return tex * (/*NormalBlueChannel * lightDirectionData.b*/ /*+ AmbientColor * AmbientLightMultiplyer + norm **/ lightData);
+
+	return tex * (AmbientColor * AmbientLightMultiplyer + norm * lightData);
 	
 //	return tex * (/*NormalBlueChannel * lightDirectionData.b*/ +ambientColor * AmbientLightMultiplyer * (1 - NormalBlueChannel * .3f) + norm);
 	//return tex * (NormalBlueChannel * lightDirectionData.b + ambientColor * AmbientLightMultiplyer * (lightAmount * lbc * LightingMultiplyer * lightDirectionData.b));
