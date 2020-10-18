@@ -97,6 +97,11 @@ namespace Riddlersoft.Graphics.Effects
 
         public static Vector2? MinPoint;
 
+        public static void SetUpGpuForRendering()
+        {
+            _effect.CurrentTechnique.Passes[0].Apply();
+        }
+
         public static void DrawTriangle(Vector2 p1, Vector2 p2, Vector2 p3, Color col, Texture2D texture, Vector2 origin, float scale)
         {
             _effect.TextureEnabled = true;
