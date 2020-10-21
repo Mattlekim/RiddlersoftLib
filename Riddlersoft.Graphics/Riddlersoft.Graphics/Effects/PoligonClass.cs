@@ -33,6 +33,7 @@ namespace Riddlersoft.Graphics.Effects
         public static void SetTexture(ref Texture2D tex)
         {
             _effect.Texture = tex;
+            _effect.CurrentTechnique.Passes[0].Apply();
         }
 
         public static void Begin(bool textureEnabled = false)
