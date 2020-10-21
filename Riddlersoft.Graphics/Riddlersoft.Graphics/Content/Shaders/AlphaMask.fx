@@ -9,8 +9,6 @@ float Enabled = 1;
 float Rotation = 1;
 float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 { 
-	
-	
 
 	texCoord.x = texCoord.x - .5f;
 	texCoord.y = texCoord.y - .5f;

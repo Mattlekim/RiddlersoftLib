@@ -30,8 +30,14 @@ namespace Riddlersoft.Graphics.Effects
             _effect.VertexColorEnabled = true;
         }
 
-        public static void Begin()
+        public static void SetTexture(ref Texture2D tex)
         {
+            _effect.Texture = tex;
+        }
+
+        public static void Begin(bool textureEnabled = false)
+        {
+            _effect.TextureEnabled = textureEnabled;
             _effect.CurrentTechnique.Passes[0].Apply();
             MinPoint = null;
         }
