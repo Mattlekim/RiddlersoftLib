@@ -33,7 +33,7 @@ namespace Test
 
         ParticalEffect pEffect;
         ParticalEffect pEffect2;
-
+        GaussianBlur blur;
 
         StringEffect text;
 
@@ -263,6 +263,8 @@ namespace Test
         /// </summary>
         protected override void LoadContent()
         {
+            blur = GaussianBlur.Load(Content);
+
             bg = Content.Load<Texture2D>("foreset2");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -331,6 +333,8 @@ namespace Test
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             timelaps += dt;
 
+            if (ms.LeftButton == ButtonState.Pressed && lms.LeftButton == ButtonState.Released)
+                enabled = !enabled;
             Riddlersoft.Core.Input.MouseTouch.Update();
             //Window.Title = pEffect.Emitters[0].Particals.Count.ToString();
             // TODO: Add your update logic here
@@ -342,6 +346,8 @@ namespace Test
             _editor.Update(dt);
             base.Update(gameTime);
         }
+
+        bool enabled = false;
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -350,11 +356,23 @@ namespace Test
         {
             GraphicsDevice.Clear(Color.Black);
 
+
+            if (enabled)
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null,null,null,blur);
+            else
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
+
+            spriteBatch.Draw(bg, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
             spriteBatch.Begin();
             _editor.Draw(spriteBatch);
-
+            
             spriteBatch.End();
-          //  eEffect.Draw(spriteBatch);
+
+            
+
+            //  eEffect.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

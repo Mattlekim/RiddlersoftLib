@@ -74,6 +74,7 @@
     <Compile Include="PoligonEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenFade.cs" />
+    <Compile Include="Shaders\2D\GaussianBlur.cs" />
     <Compile Include="Shaders\2D\Lighting2D.cs" />
     <Compile Include="Shaders\2D\AlphaMask.cs" />
     <Compile Include="Shaders\2D\Mask.cs" />

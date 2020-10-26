@@ -11,5 +11,6 @@
     <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/SpriteEffect.fx</File>
     <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/NormalMapLighting.fx</File>
     <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/AlphaMask.fx</File>
+    <File>C:/Programming/RiddlersoftLib/Riddlersoft.Graphics/Riddlersoft.Graphics/Content/Shaders/GaussianBlur.fx</File>
   </SourceFiles>
 </SourceFileCollection>
