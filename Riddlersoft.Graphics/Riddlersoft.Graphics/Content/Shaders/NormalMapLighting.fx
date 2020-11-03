@@ -79,7 +79,7 @@ float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord 
 	
 	if (RenderNormalLightingOnly == 1)
 	{
-		return tex * norm;
+		return tex * norm * lightData;
 	}
 	
 	//return tex *(ambientColor * norm);
