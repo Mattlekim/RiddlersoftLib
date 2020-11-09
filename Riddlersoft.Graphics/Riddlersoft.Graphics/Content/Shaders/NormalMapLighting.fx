@@ -17,11 +17,14 @@ float LightingMultiplyer = 5.0f;
 
 int RenderNormalLightingOnly = 0;
 
+float2 TextureScale = float2(1.0f, 1.0f);
+
 float4 MainPS(float4 pos : SV_POSITION, float4 color1 : COLOR0, float2 texCoord : TEXCOORD0) : SV_TARGET0
 {
+	
 	float4 lightData = SAMPLE_TEXTURE(LightMap, texCoord); //sample the light map
 
-	float4 emissionsLight = SAMPLE_TEXTURE(EmmisionsMap, texCoord); //sample the light map
+	float4 emissionsLight = SAMPLE_TEXTURE(EmmisionsMap, texCoord / TextureScale); //sample the light map
 	//lightData.a = 1;
 	lightData *= AmbientLightMultiplyer;
 	float4 lightDirectionData = SAMPLE_TEXTURE(LightDirectionMap, texCoord); //sampel the direction light data

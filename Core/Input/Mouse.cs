@@ -192,6 +192,8 @@ namespace Riddlersoft.Core.Input
         public static bool FlickUp { get; private set; }
         public static bool FlickDown { get; private set; }
 
+        public static bool Active = false;
+
         public static bool DoubleTap { get; private set; }
         /// <summary>
         /// this function enables touch controles
@@ -212,6 +214,8 @@ namespace Riddlersoft.Core.Input
             _position = new Vector2(_mouse.X, _mouse.Y); //get postion of mouse
             LiteralPosition = _position;
             _position = _position / _scaleBy;
+            if (!Active)
+                _position = new Vector2(-1, -1);
             _lButtonClick = false;
             _rButtonClick = false;
             _leftButtonHold = false;
@@ -225,7 +229,6 @@ namespace Riddlersoft.Core.Input
             FlickLeft = false;
             FlickRight = false;
             DoubleTap = false;
-
             _drag = DragEvent.Empty;
         }
 
@@ -246,6 +249,9 @@ namespace Riddlersoft.Core.Input
         {
            
             Reset();
+
+            if (MathHelper.Distance(MouseS.Position.X, LastMouseS.X) > 4 || MathHelper.Distance(MouseS.Y, LastMouseS.Y) > 4)
+                Active = true;
 
             if (TouchEnabled) //if touch screen is enabled
             {

@@ -20,7 +20,7 @@ namespace Riddlersoft.Core.Input
         public static GamePadState State { get { return _currentState; } }
         public static GamePadState LastState { get { return _oldState; } }
 
-        public static bool IsNintendoSwitchControler = true;
+        public static bool IsNintendoSwitchControler = false;
         
         private static int _playerOne = 0;
 
@@ -112,9 +112,17 @@ namespace Riddlersoft.Core.Input
             return false;
         }
 
+        public static bool Active { get; private set; }
+
+        private static bool GamePadInputChanged()
+        {
+           
+            return _currentState.PacketNumber != _oldState.PacketNumber;
+        }
+
         public static void Update(float dt)
         {
-
+            Active = false;
 
 #if SWITCH
             
@@ -161,6 +169,9 @@ namespace Riddlersoft.Core.Input
             _currentState = GamePad.GetState(_playerOne);
 
             if (_connected)
+            {
+                if (GamePadInputChanged())
+                    Active = true;
                 if (!_currentState.IsConnected)
                 {
                     _connected = false;
@@ -168,6 +179,7 @@ namespace Riddlersoft.Core.Input
                     if (OnControlerDisconect != null)
                         OnControlerDisconect(_playerOne);
                 }
+            }
 
             _rumbleDuration -= dt;
 
@@ -194,16 +206,28 @@ namespace Riddlersoft.Core.Input
             switch (direciton)
             {
                 case Input.DPadDirection.Up:
-                    return _currentState.DPad.Up == ButtonState.Pressed;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Up == ButtonState.Pressed;
+                    }
                     
                 case Input.DPadDirection.Down:
-                    return _currentState.DPad.Down == ButtonState.Pressed;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Down == ButtonState.Pressed;
+                    }
                     
                 case Input.DPadDirection.Left:
-                    return _currentState.DPad.Left == ButtonState.Pressed;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Left == ButtonState.Pressed;
+                    }
 
                 case Input.DPadDirection.Right:
-                    return _currentState.DPad.Right == ButtonState.Pressed;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Right == ButtonState.Pressed;
+                    }
             }
             return false;
         }
@@ -213,16 +237,28 @@ namespace Riddlersoft.Core.Input
             switch (direciton)
             {
                 case Input.DPadDirection.Up:
-                    return _currentState.DPad.Up == ButtonState.Pressed && _oldState.DPad.Up == ButtonState.Released;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Up == ButtonState.Pressed && _oldState.DPad.Up == ButtonState.Released;
+                    }
 
                 case Input.DPadDirection.Down:
-                    return _currentState.DPad.Down == ButtonState.Pressed && _oldState.DPad.Down == ButtonState.Released;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Down == ButtonState.Pressed && _oldState.DPad.Down == ButtonState.Released;
+                    }
 
                 case Input.DPadDirection.Left:
-                    return _currentState.DPad.Left == ButtonState.Pressed && _oldState.DPad.Left == ButtonState.Released;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Left == ButtonState.Pressed && _oldState.DPad.Left == ButtonState.Released;
+                    }
 
                 case Input.DPadDirection.Right:
-                    return _currentState.DPad.Right == ButtonState.Pressed && _oldState.DPad.Right == ButtonState.Released;
+                    {
+                        Active = true;
+                        return _currentState.DPad.Right == ButtonState.Pressed && _oldState.DPad.Right == ButtonState.Released;
+                    }
             }
             return false;
         }
@@ -252,11 +288,15 @@ namespace Riddlersoft.Core.Input
 
         private const float FlickThreshold = .2f;
 
+        private static bool tmp;
         public static bool LeftThumbStickFlickLeft
         {
             get
             {
-                return _currentState.ThumbSticks.Left.X < -FlickThreshold && _oldState.ThumbSticks.Left.X >= -FlickThreshold;
+                tmp = _currentState.ThumbSticks.Left.X < -FlickThreshold && _oldState.ThumbSticks.Left.X >= -FlickThreshold;
+                if (tmp)
+                    Active = true;
+                return tmp;
             }
         }
 
@@ -264,7 +304,10 @@ namespace Riddlersoft.Core.Input
         {
             get
             {
-                return _currentState.ThumbSticks.Left.Y < -FlickThreshold && _oldState.ThumbSticks.Left.Y >= -FlickThreshold; 
+                tmp = _currentState.ThumbSticks.Left.Y < -FlickThreshold && _oldState.ThumbSticks.Left.Y >= -FlickThreshold;
+                if (tmp)
+                    Active = true;
+                return tmp;
             }
         }
 
@@ -272,7 +315,10 @@ namespace Riddlersoft.Core.Input
         {
             get
             {
-                return _currentState.ThumbSticks.Left.X > FlickThreshold && _oldState.ThumbSticks.Left.X <= FlickThreshold;
+                tmp =  _currentState.ThumbSticks.Left.X > FlickThreshold && _oldState.ThumbSticks.Left.X <= FlickThreshold;
+                if (tmp)
+                    Active = true;
+                return tmp;
             }
         }
 
@@ -280,7 +326,10 @@ namespace Riddlersoft.Core.Input
         {
             get
             {
-                return _currentState.ThumbSticks.Left.Y > FlickThreshold && _oldState.ThumbSticks.Left.Y <= FlickThreshold;
+                tmp =  _currentState.ThumbSticks.Left.Y > FlickThreshold && _oldState.ThumbSticks.Left.Y <= FlickThreshold;
+                if (tmp)
+                    Active = true;
+                return tmp;
             }
         }
 

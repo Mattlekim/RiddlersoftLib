@@ -24,7 +24,7 @@ namespace Riddlersoft.Graphics.Effects
             rs.CullMode = CullMode.None;
             game.GraphicsDevice.RasterizerState = rs;
             Viewport viewport = game.GraphicsDevice.Viewport;
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0, viewport.Width, viewport.Height, 0, 0, 1);
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, 1280, 720, 0, 0, 1);
             Matrix halfPixelOffset = Matrix.CreateTranslation(-0.5f, -0.5f, 0);
             _effect.Projection = halfPixelOffset * projection;
             _effect.VertexColorEnabled = true;

@@ -57,6 +57,9 @@ namespace Riddlersoft.Core.Input
 
         private static Dictionary<Keys, char> _xnaKeyLookupTable = new Dictionary<Keys, char>();
 
+        
+        public static bool Active { get; private set; }
+
         public static bool IsCharKeyboardEnabled { get; private set; } = false;
         public static void EnableCharKeyboard()
         {
@@ -178,6 +181,10 @@ namespace Riddlersoft.Core.Input
             _supressXna = false;
             lkb = kb; //get last kb state
             kb = Keyboard.GetState(); //get current state of kb
+
+            Active = false;
+            if (kb.GetPressedKeys().Length > 0)
+                Active = true;
 
             if (IsCharKeyboardEnabled)
                 XnaKeyToChar();
